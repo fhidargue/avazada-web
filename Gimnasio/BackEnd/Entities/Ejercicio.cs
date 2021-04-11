@@ -9,7 +9,7 @@ namespace BackEnd.Entities
     {
         public Ejercicio()
         {
-            RutinaEjercicios = new HashSet<RutinaEjercicio>();
+            RutinaXejercicios = new HashSet<RutinaXejercicio>();
         }
 
         public int IdEjercicio { get; set; }
@@ -17,6 +17,6 @@ namespace BackEnd.Entities
         public string Intensidad { get; set; }
         public string Equipo { get; set; }
 
-        public virtual ICollection<RutinaEjercicio> RutinaEjercicios { get; set; }
+        public virtual ICollection<RutinaXejercicio> RutinaXejercicios { get; set; }
     }
 }

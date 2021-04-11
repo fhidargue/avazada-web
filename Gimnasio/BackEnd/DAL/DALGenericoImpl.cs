@@ -11,9 +11,9 @@ namespace BackEnd.DAL
     public class DALGenericoImpl<TEntity> : IDALGenerico<TEntity> where TEntity : class
     {
 
-        protected readonly gimnasioContext Context;
+        protected readonly GimnasioContext Context;
 
-        public DALGenericoImpl(gimnasioContext context)
+        public DALGenericoImpl(GimnasioContext context)
         {
             Context = context;
         }
