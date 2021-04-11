@@ -199,12 +199,11 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                  
-                 
                     <li class="nav-item">
-                        <a href="pages/gallery.html" class="nav-link">
-                            <i class="nav-icon far fa-image"></i>
+                        <a href="@Url.ActionLink("Index", "Usuario")" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
                             <p>
-                                Gallery
+                                Usuarios
                             </p>
                         </a>
                     </li>
@@ -217,7 +216,7 @@
         <!-- /.sidebar -->
     </aside>
 
-    <div class="container">
+    <div class="content-wrapper bg-white">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
