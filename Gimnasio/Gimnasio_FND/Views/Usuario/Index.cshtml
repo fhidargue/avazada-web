@@ -5,6 +5,77 @@
 
 <h1 class="text-center my-4">Usuarios</h1>
 
+
+<button type="button" class="btn btn-primary ml-2 mb-2" data-toggle="modal" data-target="#modal_create">
+    Crear usuario
+</button>
+
+<div class="modal fade" id="modal_create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Crear cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+
+                    <label for="cedula_create">Cédula cliente</label>
+                    <input required type="number" id="cedula_create" class="form-control">
+
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="cliente_create">Nombre cliente</label>
+                    <input required type="text" id="cliente_create" class="form-control">
+
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="apellidos_create">Apellidos cliente</label>
+                    <input required type="text" id="apellidos_create" class="form-control">
+
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email_create">Email</label>
+                    <input required type="email" id="email_create" class="form-control">
+
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="telefono_create">Teléfono</label>
+                    <input required type="number" id="telefono_create" class="form-control">
+
+
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="container">
 
     <div class="table-responsive">
@@ -12,12 +83,12 @@
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                    <th >Cédula</th>
-                    <th >Nombre</th>
-                    <th >Apellidos</th>
-                    <th >Email</th>
-                    <th >Teléfono</th>
-                    <th >Acciones</th>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,12 +100,12 @@
                     <td>wew</td>
                     <td>wew</td>
                 </tr>
-                
-              
+
+
             </tbody>
         </table>
 
-     
+
 
     </div>
 </div>
