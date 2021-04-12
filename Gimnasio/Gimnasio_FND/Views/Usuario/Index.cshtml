@@ -45,6 +45,38 @@
                     <label for="telefono_create">Teléfono</label>
                     <input required type="number" id="telefono_create" class="form-control">
                 </div>
+
+                <div class="form-group">
+
+                    <label for="rol_create">Rol</label>
+                    <select required id="rol_create" class="form-control">
+
+                        <option selected value="">-- Seleccionar rol --</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Entrenador</option>
+                        <option value="3">Cliente</option>
+
+                    </select>
+
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="sucursal_create">Sucursal</label>
+                    <select required id="sucursal_create" class="form-control">
+
+                        <option selected value="">-- Seleccionar sucursal --</option>
+                        <option value="2">Cartago</option>
+                        <option value="3">Tres Ríos</option>
+
+
+                    </select>
+
+
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -108,6 +140,37 @@
 
                 </div>
 
+                <div class="form-group">
+
+                    <label for="rol_update">Rol</label>
+                    <select required id="rol_update" class="form-control">
+
+                        <option selected value="">-- Seleccionar rol --</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Entrenador</option>
+                        <option value="3">Cliente</option>
+
+                    </select>
+
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="sucursal_update">Sucursal</label>
+                    <select required id="sucursal_update" class="form-control">
+
+                        <option selected value="">-- Seleccionar sucursal --</option>
+                        <option value="2">Cartago</option>
+                        <option value="3">Tres Ríos</option>
+                   
+
+                    </select>
+
+
+                </div>
+
 
 
             </div>
@@ -137,6 +200,8 @@
                     <th>Apellidos</th>
                     <th>Email</th>
                     <th>Teléfono</th>
+                    <!--<th>Rol</th>
+                    <th>Sucursal</th> -->
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -149,7 +214,12 @@
                         <td>@item.Apellidos</td>
                         <td>@item.Email</td>
                         <td>@item.Telefono</td>
-                        <td>Editar</td>
+                        <td class="d-flex ">
+
+                            <button id="@item.IdUsuario" data-toggle="modal" data-target="#modal_update" class="btn btn-info mr-1"><i class="far fa-edit"></i></button>
+                            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+
+                        </td>
                     </tr>
                 }
             </tbody>

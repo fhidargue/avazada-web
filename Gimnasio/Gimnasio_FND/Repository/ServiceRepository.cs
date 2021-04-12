@@ -15,7 +15,7 @@ namespace Gimnasio_FND.Repository
             {
                 BaseAddress = new Uri("http://localhost:62713/")
             };
-
+            
         }
         public HttpResponseMessage GetResponse(string url)
         {
