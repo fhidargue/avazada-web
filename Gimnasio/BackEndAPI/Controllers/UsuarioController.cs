@@ -1,5 +1,7 @@
-﻿using BackEnd.DAL;
+﻿using AutoMapper;
+using BackEnd.DAL;
 using BackEnd.Entities;
+using BackEndAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,15 +15,23 @@ namespace BackEndAPI.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
+
+        private readonly IMapper _mapper;
+
+        public UsuarioController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         [HttpGet]
         public JsonResult GetUsers()
         {
             try
             {
-                IEnumerable<Usuario> usuarios;
+                IEnumerable<UsuarioDto> usuarios;
                 using (var context = new UnidadDeTrabajo<Usuario>(new GimnasioContext()))
                 {
-                    usuarios = context.genericDAL.GetAll();
+                    usuarios = _mapper.Map<List<UsuarioDto>>(context.usuarioDal.GetComplete());
                 }
                 return new JsonResult(usuarios);
             }
@@ -38,10 +48,10 @@ namespace BackEndAPI.Controllers
         {
             try
             {
-                Usuario usuario;
+                UsuarioDto usuario;
                 using (var context = new UnidadDeTrabajo<Usuario>(new GimnasioContext()))
                 {
-                    usuario = context.genericDAL.Get(id);
+                    usuario = _mapper.Map<UsuarioDto>(context.usuarioDal.GetComplete(id));
                 }
                 return new JsonResult(usuario);
             }
