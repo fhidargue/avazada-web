@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Gimnasio_FND.Models.ViewModel.UsuarioViewModel>
 @{
     ViewData["Title"] = "Index";
 }
@@ -6,9 +6,7 @@
 <h1 class="text-center my-4">Usuarios</h1>
 
 
-<button type="button" class="btn btn-primary ml-2 mb-2" data-toggle="modal" data-target="#modal_create">
-    Crear usuario
-</button>
+
 
 <div class="modal fade" id="modal_create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -20,51 +18,33 @@
                 </button>
             </div>
             <div class="modal-body">
-
                 <div class="form-group">
 
                     <label for="cedula_create">Cédula cliente</label>
                     <input required type="number" id="cedula_create" class="form-control">
-
-
                 </div>
 
                 <div class="form-group">
-
                     <label for="cliente_create">Nombre cliente</label>
                     <input required type="text" id="cliente_create" class="form-control">
-
-
                 </div>
 
 
                 <div class="form-group">
-
                     <label for="apellidos_create">Apellidos cliente</label>
                     <input required type="text" id="apellidos_create" class="form-control">
-
-
                 </div>
 
 
                 <div class="form-group">
-
                     <label for="email_create">Email</label>
                     <input required type="email" id="email_create" class="form-control">
-
-
                 </div>
 
                 <div class="form-group">
-
                     <label for="telefono_create">Teléfono</label>
                     <input required type="number" id="telefono_create" class="form-control">
-
-
                 </div>
-
-
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -141,7 +121,11 @@
 
 
 
-<div class="container">
+<div class="px-4">
+
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modal_create">
+        Crear usuario
+    </button>
 
     <div class="table-responsive">
 
@@ -157,20 +141,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th>1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>mdo</td>
-                    <td>wew</td>
-                    <td>wew</td>
-                </tr>
-
-
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th>@item.Cedula</th>
+                        <td>@item.Nombre</td>
+                        <td>@item.Apellidos</td>
+                        <td>@item.Email</td>
+                        <td>@item.Telefono</td>
+                        <td>Editar</td>
+                    </tr>
+                }
             </tbody>
         </table>
-
-
-
     </div>
 </div>
