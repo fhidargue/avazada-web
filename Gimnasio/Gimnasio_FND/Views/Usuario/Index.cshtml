@@ -101,7 +101,7 @@
                 <div class="form-group">
 
                     <label for="cedula_update">Cédula cliente</label>
-                    <input required type="number" id="cedula_update" class="form-control">
+                    <input required type="number" id="cedula_update" class="form-control editar">
 
 
                 </div>
@@ -109,7 +109,7 @@
                 <div class="form-group">
 
                     <label for="cliente_update">Nombre cliente</label>
-                    <input required type="text" id="cliente_update" class="form-control">
+                    <input required type="text" id="cliente_update" class="form-control editar">
 
 
                 </div>
@@ -118,7 +118,7 @@
                 <div class="form-group">
 
                     <label for="apellidos_update">Apellidos cliente</label>
-                    <input required type="text" id="apellidos_update" class="form-control">
+                    <input required type="text" id="apellidos_update" class="form-control editar">
 
 
                 </div>
@@ -127,7 +127,7 @@
                 <div class="form-group">
 
                     <label for="email_update">Email</label>
-                    <input required type="email" id="email_update" class="form-control">
+                    <input required type="email" id="email_update" class="form-control editar">
 
 
                 </div>
@@ -135,7 +135,7 @@
                 <div class="form-group">
 
                     <label for="telefono_update">Teléfono</label>
-                    <input required type="number" id="telefono_update" class="form-control">
+                    <input required type="number" id="telefono_update" class="form-control editar">
 
 
                 </div>
@@ -143,7 +143,7 @@
                 <div class="form-group">
 
                     <label for="rol_update">Rol</label>
-                    <select required id="rol_update" class="form-control">
+                    <select required id="rol_update" class="form-control editar">
 
                         <option selected value="">-- Seleccionar rol --</option>
                         <option value="1">Administrador</option>
@@ -159,12 +159,12 @@
                 <div class="form-group">
 
                     <label for="sucursal_update">Sucursal</label>
-                    <select required id="sucursal_update" class="form-control">
+                    <select required id="sucursal_update" class="form-control editar">
 
                         <option selected value="">-- Seleccionar sucursal --</option>
                         <option value="2">Cartago</option>
                         <option value="3">Tres Ríos</option>
-                   
+
 
                     </select>
 
@@ -216,7 +216,7 @@
                         <td>@item.Telefono</td>
                         <td class="d-flex ">
 
-                            <button id="@item.IdUsuario" data-toggle="modal" data-target="#modal_update" class="btn btn-info mr-1"><i class="far fa-edit"></i></button>
+                            <button id="@item.IdUsuario" data-toggle="modal" data-target="#modal_update" class="btn btn-info mr-1 edit"><i class="far fa-edit"></i></button>
                             <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
 
                         </td>
@@ -226,3 +226,6 @@
         </table>
     </div>
 </div>
+
+
+<script src="~/js/usuario.js"></script>

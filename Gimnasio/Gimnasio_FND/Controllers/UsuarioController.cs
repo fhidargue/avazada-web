@@ -23,16 +23,39 @@ namespace Gimnasio_FND.Controllers
                 response.EnsureSuccessStatusCode();
 
                 var content = response.Content.ReadAsStringAsync().Result;
-                List<UsuarioViewModel> categories = JsonConvert.DeserializeObject<List<UsuarioViewModel>>(content);
+                List<UsuarioViewModel> usuarios = JsonConvert.DeserializeObject<List<UsuarioViewModel>>(content);
 
-                ViewBag.Title = "All Categories";
-                return View(categories);
+                return View(usuarios);
             }
             catch (Exception)
             {
 
                 throw;
             }
+        }
+
+
+        [HttpPost]
+        public IActionResult GetUsuario(int id)
+        {
+            try
+            {
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.GetResponse("api/Usuario/" + id);
+
+                response.EnsureSuccessStatusCode();
+
+                var content = response.Content.ReadAsStringAsync().Result;
+                UsuarioViewModel usuario = JsonConvert.DeserializeObject<UsuarioViewModel>(content);
+
+                return Json(usuario);
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                return Json(null);
+            }
+
         }
     }
 }
