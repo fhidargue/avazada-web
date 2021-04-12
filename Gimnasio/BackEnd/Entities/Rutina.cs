@@ -9,16 +9,17 @@ namespace BackEnd.Entities
     {
         public Rutina()
         {
-            RutinaEjercicios = new HashSet<RutinaEjercicio>();
+            RutinaXejercicios = new HashSet<RutinaXejercicio>();
         }
 
         public int IdRutina { get; set; }
+        public string Descripcion { get; set; }
+        public int IdUsuarioCliente { get; set; }
+        public int IdUsuarioEntrenador { get; set; }
         public DateTime FechaAsignacion { get; set; }
-        public int? IdUsuarioCliente { get; set; }
-        public int? IdUsuarioEntrenador { get; set; }
 
         public virtual Usuario IdUsuarioClienteNavigation { get; set; }
         public virtual Usuario IdUsuarioEntrenadorNavigation { get; set; }
-        public virtual ICollection<RutinaEjercicio> RutinaEjercicios { get; set; }
+        public virtual ICollection<RutinaXejercicio> RutinaXejercicios { get; set; }
     }
 }

@@ -17,17 +17,17 @@ namespace BackEnd.Entities
         }
 
         public int IdUsuario { get; set; }
+        public int IdRol { get; set; }
+        public int IdSucursal { get; set; }
         public string Cedula { get; set; }
         public string Nombre { get; set; }
-        public string Apellido { get; set; }
+        public string Apellidos { get; set; }
         public string Email { get; set; }
-        public int? Telefono { get; set; }
+        public int Telefono { get; set; }
         public string Contrasenia { get; set; }
-        public int? IdRol { get; set; }
-        public int? IdGimnasio { get; set; }
 
-        public virtual Gimnasio IdGimnasioNavigation { get; set; }
         public virtual Rol IdRolNavigation { get; set; }
+        public virtual Sucursal IdSucursalNavigation { get; set; }
         public virtual ICollection<Bitacora> Bitacoras { get; set; }
         public virtual ICollection<Medida> Medida { get; set; }
         public virtual ICollection<Rutina> RutinaIdUsuarioClienteNavigations { get; set; }

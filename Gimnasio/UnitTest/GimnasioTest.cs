@@ -20,7 +20,7 @@ namespace UnitTest
                 Direccion = "Grecia, Alajuela"
             };
             
-            using (UnidadDeTrabajo<Gimnasio> unidad = new UnidadDeTrabajo<Gimnasio>(new gimnasioContext()))
+            using (UnidadDeTrabajo<Gimnasio> unidad = new UnidadDeTrabajo<Gimnasio>(new GimnasioContext()))
             {
                 bool result = unidad.genericDAL.Add(gimnasio);
                 result = unidad.Complete();
