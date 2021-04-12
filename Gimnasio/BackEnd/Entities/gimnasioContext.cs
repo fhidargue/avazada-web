@@ -31,7 +31,7 @@ namespace BackEnd.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=25.14.47.22;Database=Gimnasio;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=25.14.47.22;Database=Gimnasio;Uid=PGAW;Pwd=HolaMundo123;");
             }
         }
 
