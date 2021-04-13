@@ -1,0 +1,228 @@
+﻿@model IEnumerable<Gimnasio_FND.Models.ViewModel.UsuarioViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center my-4">Usuarios</h1>
+
+
+
+
+<div class="modal fade" id="modal_create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Crear cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+
+                    <label for="cedula_create">Cédula cliente</label>
+                    <input required type="number" id="cedula_create" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="cliente_create">Nombre cliente</label>
+                    <input required type="text" id="cliente_create" class="form-control">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="apellidos_create">Apellidos cliente</label>
+                    <input required type="text" id="apellidos_create" class="form-control">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="email_create">Email</label>
+                    <input required type="email" id="email_create" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono_create">Teléfono</label>
+                    <input required type="number" id="telefono_create" class="form-control">
+                </div>
+
+                <div class="form-group">
+
+                    <label for="rol_create">Rol</label>
+                    <select required id="rol_create" class="form-control">
+
+                        <option selected value="">-- Seleccionar rol --</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Entrenador</option>
+                        <option value="3">Cliente</option>
+
+                    </select>
+
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="sucursal_create">Sucursal</label>
+                    <select required id="sucursal_create" class="form-control">
+
+                        <option selected value="">-- Seleccionar sucursal --</option>
+                        <option value="2">Cartago</option>
+                        <option value="3">Tres Ríos</option>
+
+
+                    </select>
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Editar cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+
+                    <label for="cedula_update">Cédula cliente</label>
+                    <input required type="number" id="cedula_update" class="form-control">
+
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="cliente_update">Nombre cliente</label>
+                    <input required type="text" id="cliente_update" class="form-control">
+
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="apellidos_update">Apellidos cliente</label>
+                    <input required type="text" id="apellidos_update" class="form-control">
+
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email_update">Email</label>
+                    <input required type="email" id="email_update" class="form-control">
+
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="telefono_update">Teléfono</label>
+                    <input required type="number" id="telefono_update" class="form-control">
+
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="rol_update">Rol</label>
+                    <select required id="rol_update" class="form-control">
+
+                        <option selected value="">-- Seleccionar rol --</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Entrenador</option>
+                        <option value="3">Cliente</option>
+
+                    </select>
+
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="sucursal_update">Sucursal</label>
+                    <select required id="sucursal_update" class="form-control">
+
+                        <option selected value="">-- Seleccionar sucursal --</option>
+                        <option value="2">Cartago</option>
+                        <option value="3">Tres Ríos</option>
+                   
+
+                    </select>
+
+
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="px-4">
+
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modal_create">
+        Crear usuario
+    </button>
+
+    <div class="table-responsive">
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <!--<th>Rol</th>
+                    <th>Sucursal</th> -->
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th>@item.Cedula</th>
+                        <td>@item.Nombre</td>
+                        <td>@item.Apellidos</td>
+                        <td>@item.Email</td>
+                        <td>@item.Telefono</td>
+                        <td class="d-flex ">
+
+                            <button id="@item.IdUsuario" data-toggle="modal" data-target="#modal_update" class="btn btn-info mr-1"><i class="far fa-edit"></i></button>
+                            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

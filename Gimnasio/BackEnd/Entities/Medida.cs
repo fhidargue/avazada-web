@@ -8,11 +8,11 @@ namespace BackEnd.Entities
     public partial class Medida
     {
         public int IdMedida { get; set; }
-        public decimal Peso { get; set; }
-        public decimal? PorcentajeMasa { get; set; }
-        public decimal? PorcentajeGrasa { get; set; }
-        public decimal? Altural { get; set; }
-        public int? IdUsuario { get; set; }
+        public int IdUsuario { get; set; }
+        public decimal? Peso { get; set; }
+        public int? PorcentajeMasa { get; set; }
+        public int? PorcentajeGrasa { get; set; }
+        public decimal? Altura { get; set; }
 
         public virtual Usuario IdUsuarioNavigation { get; set; }
     }

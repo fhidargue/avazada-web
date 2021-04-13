@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center my-4">Ejercicios</h1>
+
+
+
+<div class="modal fade" id="modal_create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Crear ejercicio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+
+                    <label for="descripcion_create">Descripción</label>
+                    <input required type="text" id="descripcion_create" class="form-control">
+
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="intensidad_create">Intensidad</label>
+                    <input required type="text" id="intensidad_create" class="form-control">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="equipo_create">Equipo</label>
+                    <input required type="text" id="equipo_create" class="form-control">
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Editar ejercicio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+
+                    <label for="descripcion_update">Descripción</label>
+                    <input required type="text" id="descripcion_update" class="form-control">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="intensidad_update">Intensidad</label>
+                    <input required type="text" id="intensidad_update" class="form-control">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="equipo_update">Equipo</label>
+                    <input required type="text" id="equipo_update" class="form-control">
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="px-4">
+
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modal_create">
+        Crear ejercicio
+    </button>
+    <div class="table-responsive">
+
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Descripción</th>
+                    <th>Intensidad</th>
+                    <th>Equipo</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>ewew</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>

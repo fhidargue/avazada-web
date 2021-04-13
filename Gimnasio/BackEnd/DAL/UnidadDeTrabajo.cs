@@ -7,15 +7,19 @@ namespace BackEnd.DAL
 {
     public class UnidadDeTrabajo<T> : IDisposable where T : class
     {
-        private readonly gimnasioContext context;
+        private readonly GimnasioContext context;
+
         public IDALGenerico<T> genericDAL;
 
+        public PersonalDal usuarioDal;
 
-        public UnidadDeTrabajo(gimnasioContext _context)
+
+        public UnidadDeTrabajo(GimnasioContext _context)
         {
             context = _context;
             genericDAL = new DALGenericoImpl<T>(context);
-          
+            usuarioDal = new PersonalDal(context);
+
         }
 
         public bool Complete()
