@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Gimnasio_FND.Models.ViewModel;
+using Gimnasio_FND.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Gimnasio_FND.Controllers
 {
@@ -10,8 +14,24 @@ namespace Gimnasio_FND.Controllers
     {
         public IActionResult Index()
         {
+            try
+            {
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.GetResponse("api/Ejercicio");
 
-            return View();
+                response.EnsureSuccessStatusCode();
+
+                var content = response.Content.ReadAsStringAsync().Result;
+                List<EjercicioViewModel> ejercicios = JsonConvert.DeserializeObject<List<EjercicioViewModel>>(content);
+
+                return View(ejercicios);
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                return View();
+            }
+ 
         }
     }
 }
