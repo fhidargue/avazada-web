@@ -65,14 +65,14 @@
                 <div class="form-group">
 
                     <label for="descripcion_update">Descripción</label>
-                    <input required type="text" id="descripcion_update" class="form-control">
+                    <input required type="text" id="descripcion_update" class="form-control editar">
 
                 </div>
 
                 <div class="form-group">
 
                     <label for="intensidad_update">Intensidad</label>
-                    <input required type="text" id="intensidad_update" class="form-control">
+                    <input required type="text" id="intensidad_update" class="form-control editar">
 
                 </div>
 
@@ -80,7 +80,7 @@
                 <div class="form-group">
 
                     <label for="equipo_update">Equipo</label>
-                    <input required type="text" id="equipo_update" class="form-control">
+                    <input required type="text" id="equipo_update" class="form-control editar">
 
                 </div>
 
@@ -107,6 +107,7 @@
                     <th>Descripción</th>
                     <th>Intensidad</th>
                     <th>Equipo</th>
+                    <th>Acciones</th>
 
                 </tr>
             </thead>
@@ -118,6 +119,12 @@
                         <td>@item.Descripcion</td>
                         <td>@item.Intensidad</td>
                         <td>@item.Equipo</td>
+                        <td class="d-flex ">
+
+                            <button id="@item.IdEjercicio" data-toggle="modal" data-target="#modal_update" class="btn btn-info mr-1 edit"><i class="far fa-edit"></i></button>
+                            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+
+                        </td>
                     </tr>
                 }
 
@@ -126,3 +133,6 @@
 
     </div>
 </div>
+
+
+<script src="~/js/ejercicio.js"></script>
