@@ -16,5 +16,7 @@ namespace Gimnasio_FND.Models.ViewModel
         public string Email { get; set; }
         public int Telefono { get; set; }
         public string Contrasenia { get; set; }
+
+        public virtual RolViewModel IdRolNavigation { get; set; }
     }
 }

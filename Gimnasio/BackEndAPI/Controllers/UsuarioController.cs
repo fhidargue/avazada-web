@@ -84,7 +84,7 @@ namespace BackEndAPI.Controllers
         }
 
 
-        [HttpPatch]
+        [HttpPut]
         public IActionResult UpdateUser(Usuario usuario)
         {
             try

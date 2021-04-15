@@ -30,5 +30,13 @@ namespace BackEnd.DAL
                 .Include(r => r.IdSucursalNavigation)
                 .FirstOrDefault(r => r.IdUsuario == id);
         }
+
+        public Usuario GetComplete(Usuario usuario)
+        {
+            return _context.Usuarios
+                .Include(r => r.IdRolNavigation)
+                .Include(r => r.IdSucursalNavigation)
+                .FirstOrDefault(r => r.Email.Equals(usuario.Email) && r.Contrasenia.Equals(usuario.Contrasenia));
+        }
     }
 }

@@ -1,0 +1,74 @@
+﻿
+@model Gimnasio_FND.Models.ViewModel.UsuarioViewModel
+
+
+<form method="post" asp-action="CreateUsuario" asp-controller="Usuario">
+    <div class="modal fade" id="modal_create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Crear cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+
+                        <label for="cedula_create">Cédula cliente</label>
+                        <input required type="number" id="cedula_create" class="form-control" asp-for="Cedula" name="Cedula">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cliente_create">Nombre cliente</label>
+                        <input required type="text" id="cliente_create" class="form-control" asp-for="Nombre" name="Nombre">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="apellidos_create">Apellidos cliente</label>
+                        <input required type="text" id="apellidos_create" class="form-control" asp-for="Apellidos" name="Apellidos">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="email_create">Email</label>
+                        <input required type="email" id="email_create" class="form-control" asp-for="Email" name="Email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono_create">Teléfono</label>
+                        <input required type="number" id="telefono_create" class="form-control" asp-for="Telefono" name="Telefono">
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="rol_create">Rol</label>
+                        <select required id="rol_create" class="form-control" asp-for="IdRol" name="IdRol">
+
+                            <option selected value="">-- Seleccionar rol --</option>
+                            <option value="1">Administrador</option>
+                            <option value="2">Entrenador</option>
+                            <option value="3">Cliente</option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sucursal_create">Sucursal</label>
+                        <select required id="sucursal_create" class="form-control" asp-for="IdSucursal" name="IdSucursal">
+
+                            <option selected value="">-- Seleccionar sucursal --</option>
+                            <option value="2">Cartago</option>
+                            <option value="3">Tres Ríos</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

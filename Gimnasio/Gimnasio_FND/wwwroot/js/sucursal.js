@@ -14,7 +14,7 @@
 
     $.ajax({
 
-        url: "Ejercicio/GetEjercicio",
+        url: "Sucursal/GetSucursal",
         type: "POST",
         dataType: "json",
         data: {
@@ -23,23 +23,25 @@
 
         success(datos) {
 
-            const { descripcion, intensidad, equipo, idEjercicio } = datos;
+
+            const { idSucursal, sede, telefono, email, direccion } = datos;
 
             const inputs = document.querySelectorAll('.editar');
 
 
-            inputs[0].value = descripcion;
-            inputs[1].value = equipo;
-            inputs[2].value = intensidad;
+            inputs[0].value = sede;
+            inputs[1].value = direccion;
+            inputs[2].value = telefono;
+            inputs[3].value = email;
 
-            const hidden = document.getElementById("IdEjercicio");
-            hidden.value = idEjercicio;
+            const hidden = document.getElementById("IdSucursal");
+            hidden.value = idSucursal;
 
         },
 
         error(error) {
 
-            console.log(datos);
+            console.log(error);
 
         }
 

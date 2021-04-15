@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +25,23 @@ namespace Gimnasio_FND
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddRazorPages().AddSessionStateTempDataProvider();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                options.LoginPath = "/InicioSesion/Index";
+                options.SlidingExpiration = true;
+                options.Cookie.Name = "GymCookie";
+
+            });
+            services.AddHttpContextAccessor();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddControllersWithViews();
         }
 
@@ -44,7 +63,11 @@ namespace Gimnasio_FND
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
+
+
 
             app.UseEndpoints(endpoints =>
             {

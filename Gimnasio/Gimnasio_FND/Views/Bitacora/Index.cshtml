@@ -1,21 +1,24 @@
-﻿
+﻿@model IEnumerable<Gimnasio_FND.Models.ViewModel.BitacoraViewModel>
 @{
     ViewData["Title"] = "Index";
 }
 
 
 <div class="container p-4">
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <div class="card-header bg-gradient-cyan">
+                Bitacora
+            </div>
+            <div class="card-body">
+                <h5 class="card-title mb-2">Modulo: @item.Modulo</h5>
+                <p class="card-text">Descripcion: @item.Descripcion</p>
+                <p class="card-text">Fecha: @item.Fecha</p>
+            </div>
+        </div>
 
-    <div class="card">
-        <div class="card-header bg-gradient-cyan">
-         Usuario
-        </div>
-        <div class="card-body">
-            <h5 class="card-title mb-2">Modulo: </h5>
-            <p class="card-text">Descripcion: </p>
-            <p class="card-text">Fecha: </p>
-        </div>
-    </div>
+    }
 
 </div>
 

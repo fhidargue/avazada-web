@@ -74,7 +74,7 @@ namespace BackEndAPI.Controllers
         }
 
 
-        [HttpPatch]
+        [HttpPut]
         public IActionResult UpdateSucursal(Sucursal sucursal)
         {
             try
