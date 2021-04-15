@@ -3,5 +3,78 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Rutina</h1>
+
+<form action="/" method="post">
+
+    <div class="modal fade" id="rutina_create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Nueva Rutina</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+
+                        <label for="rutina">Rutina</label>
+                        <input type="text" class="form-control" required id="rutina" />
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+<div class="p-3">
+
+
+    <button type="button" class="btn btn-success mb-4" data-toggle="modal" data-target="#rutina_create">
+        Crear Rutina
+    </button>
+
+    <div class="card">
+        <div class="card-header">
+
+            <div class="row align-items-center">
+
+                <p class="m-0">Rutina de Daniel</p>
+
+                <div class="ml-4">
+
+                    <button type="submit" class="btn btn-outline-success">Crear Ejercicio</button>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="card-body">
+           
+            <!--
+
+    foreach(ejercicio){
+
+       <p class="card-text">Ejercicio</p>
+
+                }
+
+        -->
+
+        </div>
+    </div>
+
+
+
+</div>
 
