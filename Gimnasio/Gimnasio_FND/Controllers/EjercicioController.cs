@@ -33,5 +33,31 @@ namespace Gimnasio_FND.Controllers
             }
  
         }
+
+
+        [HttpPost]
+        public IActionResult GetEjercicio(int id)
+        {
+            try
+            {
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.GetResponse("api/Ejercicio/" + id);
+
+                response.EnsureSuccessStatusCode();
+
+                var content = response.Content.ReadAsStringAsync().Result;
+                EjercicioViewModel ejercicio = JsonConvert.DeserializeObject<EjercicioViewModel>(content);
+
+                return Json(ejercicio);
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                return Json(null);
+            }
+
+        }
+
+
     }
 }
