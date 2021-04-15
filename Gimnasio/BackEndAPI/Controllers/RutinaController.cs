@@ -74,7 +74,7 @@ namespace BackEndAPI.Controllers
         }
 
 
-        [HttpPatch]
+        [HttpPut]
         public IActionResult UpdateRutina(Rutina rutina)
         {
             try
