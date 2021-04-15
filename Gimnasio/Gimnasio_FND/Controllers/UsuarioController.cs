@@ -13,6 +13,7 @@ namespace Gimnasio_FND.Controllers
     public class UsuarioController : Controller
     {
 
+        #region Vistas
         public IActionResult Index()
         {
             try
@@ -33,7 +34,12 @@ namespace Gimnasio_FND.Controllers
                 throw;
             }
         }
+        #endregion
 
+
+
+
+        #region Datos
 
         [HttpPost]
         public IActionResult GetUsuario(int id)
@@ -57,5 +63,53 @@ namespace Gimnasio_FND.Controllers
             }
 
         }
+
+
+
+        [HttpPost]
+        public IActionResult CreateUsuario(UsuarioViewModel usuario)
+        {
+            try
+            {
+                usuario.Contrasenia = usuario.Contrasenia = "HolaMundo25";
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.PostResponse("api/Usuario", usuario);
+                response.EnsureSuccessStatusCode();
+
+                TempData["datos"] = (response.IsSuccessStatusCode) ? "Usuario Creado" : "Hubo un error creando el usuario";
+
+                return RedirectToAction("Index", "Usuario");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+
+        [HttpPost]
+        public IActionResult UpdateUsuario(UsuarioViewModel usuario)
+        {
+            try
+            {
+                usuario.Contrasenia = usuario.Contrasenia = "HolaMundo25";
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.PutResponse("api/Usuario", usuario);
+                response.EnsureSuccessStatusCode();
+
+                TempData["datos"] = (response.IsSuccessStatusCode) ? "Usuario Actualizado" : "Hubo un error actualizando el usuario";
+
+                return RedirectToAction("Index", "Usuario");
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                throw;
+            }
+        }
+        #endregion
+
     }
 }

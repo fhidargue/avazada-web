@@ -25,8 +25,10 @@ const getId = e => {
         },
 
         success(datos) {
-   
-            const { apellidos, cedula, email, idRol, idSucursal, nombre, telefono  } = datos;
+
+
+
+            const { apellidos, cedula, email, idRol, idSucursal, nombre, telefono, idUsuario } = datos;
 
             const inputs = document.querySelectorAll('.editar');
 
@@ -39,6 +41,14 @@ const getId = e => {
             inputs[5].value = idRol;
             inputs[6].value = idSucursal;
 
+            const hidden = document.getElementById("IdUsuario");
+
+            hidden.value = idUsuario;
+
+            console.log(hidden);
+
+            //document.getElementById("IdUsuario").value = IdUsuario;
+
 
         },
 
@@ -49,7 +59,7 @@ const getId = e => {
         }
 
     });
-   
+
 
 
 
