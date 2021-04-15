@@ -55,7 +55,6 @@ namespace Gimnasio_FND.Controllers
                 var s = ex.Message;
                 return Json(null);
             }
-
         }
 
 
