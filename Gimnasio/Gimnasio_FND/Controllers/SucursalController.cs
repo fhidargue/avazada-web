@@ -10,35 +10,35 @@ using System.Threading.Tasks;
 
 namespace Gimnasio_FND.Controllers
 {
-    public class UsuarioController : Controller
+    public class SucursalController : Controller
     {
-
         public IActionResult Index()
         {
             try
             {
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.GetResponse("api/Usuario");
+                HttpResponseMessage response = serviceObj.GetResponse("api/Sucursal");
 
                 response.EnsureSuccessStatusCode();
 
                 var content = response.Content.ReadAsStringAsync().Result;
-                List<UsuarioViewModel> usuarios = JsonConvert.DeserializeObject<List<UsuarioViewModel>>(content);
+                List<SucursalViewModel> sucursales = JsonConvert.DeserializeObject<List<SucursalViewModel>>(content);
 
-                ViewBag.Title = "All Usuarios";
-                return View(usuarios);
+                ViewBag.Title = "All Sucursales";
+                return View(sucursales);
             }
             catch (Exception)
             {
+
                 throw;
             }
         }
 
         [HttpPost]
-        public ActionResult Create(Models.ViewModel.UsuarioViewModel usuario)
+        public ActionResult Create(Models.ViewModel.SucursalViewModel sucursal)
         {
             ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.PostResponse("api/Usuario/agregar", usuario);
+            HttpResponseMessage response = serviceObj.PostResponse("api/Sucursal/agregar", sucursal);
             response.EnsureSuccessStatusCode();
 
             return RedirectToAction("Index");

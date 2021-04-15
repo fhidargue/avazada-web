@@ -10,23 +10,22 @@ using System.Threading.Tasks;
 
 namespace Gimnasio_FND.Controllers
 {
-    public class UsuarioController : Controller
+    public class RutinaController : Controller
     {
-
         public IActionResult Index()
         {
             try
             {
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.GetResponse("api/Usuario");
+                HttpResponseMessage response = serviceObj.GetResponse("api/Rutina");
 
                 response.EnsureSuccessStatusCode();
 
                 var content = response.Content.ReadAsStringAsync().Result;
-                List<UsuarioViewModel> usuarios = JsonConvert.DeserializeObject<List<UsuarioViewModel>>(content);
+                List<RutinaViewModel> rutinas = JsonConvert.DeserializeObject<List<RutinaViewModel>>(content);
 
-                ViewBag.Title = "All Usuarios";
-                return View(usuarios);
+                ViewBag.Title = "All Rutinas";
+                return View(rutinas);
             }
             catch (Exception)
             {
@@ -35,10 +34,10 @@ namespace Gimnasio_FND.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Models.ViewModel.UsuarioViewModel usuario)
+        public ActionResult Create(Models.ViewModel.RutinaViewModel rutina)
         {
             ServiceRepository serviceObj = new ServiceRepository();
-            HttpResponseMessage response = serviceObj.PostResponse("api/Usuario/agregar", usuario);
+            HttpResponseMessage response = serviceObj.PostResponse("api/Rutina/agregar", rutina);
             response.EnsureSuccessStatusCode();
 
             return RedirectToAction("Index");

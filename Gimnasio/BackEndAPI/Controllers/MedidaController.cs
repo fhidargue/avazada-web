@@ -1,5 +1,7 @@
-﻿using BackEnd.DAL;
+﻿using AutoMapper;
+using BackEnd.DAL;
 using BackEnd.Entities;
+using BackEndAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,6 +15,32 @@ namespace BackEndAPI.Controllers
     [ApiController]
     public class MedidaController : ControllerBase
     {
+        private readonly IMapper _mapper;
+
+        public MedidaController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
+        [HttpGet]
+        public JsonResult GetMedidas()
+        {
+            try
+            {
+                IEnumerable <MedidaDto> medidas;
+                using (var context = new UnidadDeTrabajo<Medida>(new GimnasioContext()))
+                {
+                    medidas = _mapper.Map<List<MedidaDto>>(context.usuarioDal.GetComplete());
+                }
+                return new JsonResult(medidas);
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                return new JsonResult(null);
+            }
+
+        }
 
         [HttpGet("{id:int}")]
         public JsonResult GetMedida(int id)
@@ -36,6 +64,7 @@ namespace BackEndAPI.Controllers
 
 
         [HttpPost]
+        [Route("agregar")]
         public IActionResult CreateMedida(Medida medidas)
         {
             try

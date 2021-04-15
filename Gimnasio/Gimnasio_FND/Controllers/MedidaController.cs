@@ -10,26 +10,26 @@ using System.Threading.Tasks;
 
 namespace Gimnasio_FND.Controllers
 {
-    public class UsuarioController : Controller
+    public class MedidaController : Controller
     {
-
         public IActionResult Index()
         {
             try
             {
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.GetResponse("api/Usuario");
+                HttpResponseMessage response = serviceObj.GetResponse("api/Medida");
 
                 response.EnsureSuccessStatusCode();
 
                 var content = response.Content.ReadAsStringAsync().Result;
-                List<UsuarioViewModel> usuarios = JsonConvert.DeserializeObject<List<UsuarioViewModel>>(content);
+                List<MedidaViewModel> medidas = JsonConvert.DeserializeObject<List<MedidaViewModel>>(content);
 
-                ViewBag.Title = "All Usuarios";
-                return View(usuarios);
+                ViewBag.Title = "All Medidas";
+                return View(medidas);
             }
             catch (Exception)
             {
+
                 throw;
             }
         }

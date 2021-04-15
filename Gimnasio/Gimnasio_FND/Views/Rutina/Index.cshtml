@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Gimnasio_FND.Models.ViewModel.RutinaViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+<h1 class="text-center my-4">Rutinas</h1>
+<div class="modal fade" id="modal_create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Crear rutina</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="usuario_create">ID del Usuario</label>
+                    <input required type="number" id="usuario_create" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="entreno_create">ID del Entrenador</label>
+                    <input required type="number" id="entreno_create" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="descripcion_create">Descripción</label>
+                    <input required type="number" id="descripcion_create" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="fecha_create">Fecha Asignada</label>
+                    <input required type="date" id="fecha_create" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button onclick="crearRutina('@Url.Action("Create","Rutina")')" type="button" class="btn btn-primary">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Editar cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="usuario_create">ID del Usuario</label>
+                    <input required type="number" id="usuario_create" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="entreno_create">ID del Entrenador</label>
+                    <input required type="number" id="entreno_create" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="descripcion_create">Descripción</label>
+                    <input required type="number" id="descripcion_create" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="fecha_create">Fecha Asignada</label>
+                    <input required type="date" id="fecha_create" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="px-4">
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modal_create">
+        Crear medida
+    </button>
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID de la Rutina</th>
+                    <th>ID del Usuario</th>
+                    <th>ID del Entrenador</th>
+                    <th>Descripción</th>
+                    <th>Fecha Asignada</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th>@item.IdRutina</th>
+                        <td>@item.IdUsuarioCliente</td>
+                        <td>@item.IdUsuarioEntrenador</td>
+                        <td>@item.Descripcion</td>
+                        <td>@item.FechaAsignacion</td>
+                        <td class="d-flex ">
+                            <button id="@item.IdRutina" data-toggle="modal" data-target="#modal_update" class="btn btn-info mr-1"><i class="far fa-edit"></i></button>
+                            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="~/js/rutinas.js"></script>

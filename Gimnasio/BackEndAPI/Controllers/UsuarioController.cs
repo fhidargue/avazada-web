@@ -66,6 +66,7 @@ namespace BackEndAPI.Controllers
 
 
         [HttpPost]
+        [Route("agregar")]
         public IActionResult CreateUser(Usuario usuario)
         {
             try
@@ -85,6 +86,7 @@ namespace BackEndAPI.Controllers
 
 
         [HttpPatch]
+        [Route("actualizar")]
         public IActionResult UpdateUser(Usuario usuario)
         {
             try
@@ -104,6 +106,7 @@ namespace BackEndAPI.Controllers
 
         /*
         [HttpDelete("{id:int}")]
+        [Route("eliminar")]
         public IActionResult DeleteUser(int id)
         {
             try

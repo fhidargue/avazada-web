@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Gimnasio_FND.Models.ViewModel.SucursalViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+<h1 class="text-center my-4">Sucursales</h1>
+<div class="modal fade" id="modal_create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Crear sucursal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="sede_create">Sede</label>
+                    <input required type="text" id="sede_create" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="telefono_create">Teléfono</label>
+                    <input required type="text" id="telefono_create" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email_create">Email</label>
+                    <input required type="email" id="email_create" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="direccion_create">Dirección</label>
+                    <input required type="text" id="direccion_create" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button onclick="crearSucursal('@Url.Action("Create","Sucursal")')" type="button" class="btn btn-primary">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Editar sucursal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="sede_create">Sede</label>
+                    <input required type="text" id="sede_create" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="telefono_create">Teléfono</label>
+                    <input required type="text" id="telefono_create" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email_create">Email</label>
+                    <input required type="email" id="email_create" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="direccion_create">Dirección</label>
+                    <input required type="number" id="direccion_create" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="px-4">
+
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modal_create">
+        Crear sucursal
+    </button>
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID Sucursal</th>
+                    <th>Sede</th>
+                    <th>Teléfono</th>
+                    <th>Email</th>
+                    <th>Dirección</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th>@item.IdSucursal</th>
+                        <td>@item.Sede</td>
+                        <td>@item.Telefono</td>
+                        <td>@item.Email</td>
+                        <td>@item.Direccion</td>
+                        <td class="d-flex ">
+                            <button id="@item.IdSucursal" data-toggle="modal" data-target="#modal_update" class="btn btn-info mr-1"><i class="far fa-edit"></i></button>
+                            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="~/js/sucursales.js"></script>

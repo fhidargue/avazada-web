@@ -56,6 +56,7 @@ namespace BackEndAPI.Controllers
 
 
         [HttpPost]
+        [Route("agregar")]
         public IActionResult CreateEjercicio(Ejercicio ejercicio)
         {
             try

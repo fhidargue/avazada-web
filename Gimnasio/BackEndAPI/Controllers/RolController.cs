@@ -53,5 +53,24 @@ namespace BackEndAPI.Controllers
             }
 
         }
+
+        [HttpPost]
+        [Route("agregar")]
+        public IActionResult CreateRol(Rol rol)
+        {
+            try
+            {
+                using var context = new UnidadDeTrabajo<Rol>(new GimnasioContext());
+                context.genericDAL.Add(rol);
+                return (context.Complete()) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            }
+
+        }
     }
 }

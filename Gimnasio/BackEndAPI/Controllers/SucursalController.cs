@@ -14,23 +14,22 @@ namespace BackEndAPI.Controllers
     public class SucursalController : ControllerBase
     {
         [HttpGet]
-        public JsonResult GetSucursal()
+        public JsonResult GetSucursales()
         {
             try
             {
-                IEnumerable<Sucursal> sucursals;
+                IEnumerable<Sucursal> sucursales;
                 using (var context = new UnidadDeTrabajo<Sucursal>(new GimnasioContext()))
                 {
-                    sucursals = context.genericDAL.GetAll();
+                    sucursales = context.genericDAL.GetAll();
                 }
-                return new JsonResult(sucursals);
+                return new JsonResult(sucursales);
             }
             catch (Exception ex)
             {
                 var s = ex.Message;
                 return new JsonResult(null);
             }
-
         }
 
         [HttpGet("{id:int}")]
@@ -56,6 +55,7 @@ namespace BackEndAPI.Controllers
 
 
         [HttpPost]
+        [Route("agregar")]
         public IActionResult CreateSucursal(Sucursal sucursal)
         {
             try

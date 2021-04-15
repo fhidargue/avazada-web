@@ -80,7 +80,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Crear</button>
+                <button onclick="crearUsuario('@Url.Action("Create","Usuario")')" type="button" class="btn btn-primary">Crear</button>
             </div>
         </div>
     </div>
@@ -226,3 +226,5 @@
         </table>
     </div>
 </div>
+
+<script src="~/js/usuarios.js"></script>
