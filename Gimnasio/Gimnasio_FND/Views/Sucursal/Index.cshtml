@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Gimnasio_FND.Models.ViewModel.SucursalViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center my-4">Sucursales</h1>
+
+
+
+<partial name="_CreateSucursalPartial" model='new Gimnasio_FND.Models.ViewModel.SucursalViewModel()' />
+
+
+<partial name="_UpdateSucursalPartial" model='new Gimnasio_FND.Models.ViewModel.SucursalViewModel()' />
+
+
+
+<div class="px-4">
+
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modal_create">
+        Crear Sucursal
+    </button>
+
+    <div class="table-responsive">
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Sede</th>
+                    <th>Teléfono</th>
+                    <th>Correo Electrónico</th>
+                    <th>Ubicación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th>@item.Sede</th>
+                        <td>@item.Telefono</td>
+                        <td>@item.Email</td>
+                        <td>@item.Direccion</td>
+                        <td class="d-flex ">
+
+                            <button id="@item.IdSucursal" data-toggle="modal" data-target="#modal_update" class="btn btn-info mr-1 edit"><i class="far fa-edit"></i></button>
+                            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script src="~/js/sucursal.js"></script>
+

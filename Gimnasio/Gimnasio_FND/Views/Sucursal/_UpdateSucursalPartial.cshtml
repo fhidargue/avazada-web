@@ -1,0 +1,55 @@
+﻿@model Gimnasio_FND.Models.ViewModel.SucursalViewModel
+
+<form method="post" asp-action="UpdateSucursal" asp-controller="Sucursal">
+    @Html.HiddenFor(r => r.IdSucursal)
+    <div class="modal fade" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Crear sucursal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+
+                        <label for="sede_update">Provincia de la sede</label>
+                        <select required id="sede_update" class="form-control editar" asp-for="Sede" name="Sede">
+                            <option selected value="">-- Provincia --</option>
+                            <option value="San José">San José</option>
+                            <option value="Alajuela">Alajuela</option>
+                            <option value="Cartago">Cartago</option>
+                            <option value="Heredia">Heredia</option>
+                            <option value="Guanacaste">Guanacaste</option>
+                            <option value="Puntarenas">Puntarenas</option>
+                            <option value="Limón">Limón</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="direccion_update">Dirección Exacta</label>
+                        <input required type="text" id="direccion_update" class="form-control editar" asp-for="Direccion" name="Direccion">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono_update">Télefono</label>
+                        <input required type="text" id="telefono_update" class="form-control editar" asp-for="Telefono" name="Telefono">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="correo_update">Correo Electrónico</label>
+                        <input required type="email" id="correo_update" class="form-control editar" asp-for="Email" name="Email">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
