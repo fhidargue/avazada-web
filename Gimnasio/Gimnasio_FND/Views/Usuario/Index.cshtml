@@ -7,7 +7,7 @@
 
 
 
-<partial name="_CreateUserPartial" model='new Gimnasio_FND.Models.ViewModel.UsuarioViewModel()' />
+<partial name="_CreateUserPartial" model='new Gimnasio_FND.Models.ViewModel.UsuarioViewModel {Entrenadores = Model.Where(r => r.IdRol == 2).ToList() }' />
 
 
 <partial name="_UpdateUserPartial" model='new Gimnasio_FND.Models.ViewModel.UsuarioViewModel()' />

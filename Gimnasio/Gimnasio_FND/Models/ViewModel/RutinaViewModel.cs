@@ -65,8 +65,8 @@ namespace Gimnasio_FND.Models.ViewModel
         public IdUsuarioClienteNavigation IdUsuarioClienteNavigation { get; set; }
         public IdUsuarioEntrenadorNavigation IdUsuarioEntrenadorNavigation { get; set; }
         public IList<RutinaXejercicio> RutinaXejercicios { get; set; }
-
         public List<EjercicioViewModel> Ejercicios { get; set; }
+        public List<UsuarioViewModel> Usuarios { get; set; }
     }
 
 }

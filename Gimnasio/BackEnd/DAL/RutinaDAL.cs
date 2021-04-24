@@ -15,7 +15,9 @@ namespace BackEnd.DAL
             _context = context;
         }
 
-        public List<RutinaXejercicio> GetComplete()
+        #region RutinaEjercicio
+
+        public List<RutinaXejercicio> GetCompleteRutinaEjercicio()
         {
             return _context.RutinaXejercicios
                 .Include(r => r.IdEjercicioNavigation)
@@ -24,7 +26,7 @@ namespace BackEnd.DAL
                 .ToList();
         }
 
-        public RutinaXejercicio GetComplete(int id)
+        public RutinaXejercicio GetCompleteRutinaEjercicio(int id)
         {
             return _context.RutinaXejercicios
                 .Include(r => r.IdEjercicioNavigation)
@@ -34,17 +36,21 @@ namespace BackEnd.DAL
                 .FirstOrDefault(r => r.IdRutinaEjercicio == id);
         }
 
-        //public List<RutinaXejercicio> GetCompleteRutina(int id)
-        //{
-        //    return _context.RutinaXejercicios
-        //        .Include(r => r.IdEjercicioNavigation)
-        //        .Include(r => r.IdRutinaNavigation)
-        //        .Include(r => r.IdRutinaNavigation).ThenInclude(r => r.IdUsuarioClienteNavigation)
-        //        .Include(r => r.IdRutinaNavigation).ThenInclude(r => r.IdUsuarioEntrenadorNavigation)
-        //        .Where(r => r.IdRutina == id)
-        //        .ToList();
-        //}
+        public List<RutinaXejercicio> GetCompleteRutinasEjercicios(int id)
+        {
+            return _context.RutinaXejercicios
+                .Include(r => r.IdEjercicioNavigation)
+                .Include(r => r.IdRutinaNavigation)
+                .Include(r => r.IdRutinaNavigation).ThenInclude(r => r.IdUsuarioClienteNavigation)
+                .Include(r => r.IdRutinaNavigation).ThenInclude(r => r.IdUsuarioEntrenadorNavigation)
+                .Where(r => r.IdRutina == id)
+                .ToList();
+        }
 
+        #endregion
+
+
+        #region Rutina
         public List<Rutina> GetCompleteRutina()
         {
             return _context.Rutinas
@@ -64,5 +70,7 @@ namespace BackEnd.DAL
                 .Include(r => r.IdUsuarioEntrenadorNavigation)
                .FirstOrDefault(r => r.IdRutina == id);
         }
+        #endregion
+
     }
 }

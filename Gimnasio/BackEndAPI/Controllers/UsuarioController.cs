@@ -66,13 +66,34 @@ namespace BackEndAPI.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateUser(Usuario usuario)
+        public IActionResult CreateUser(UsuarioDto model)
         {
             try
             {
+                Usuario usuario = _mapper.Map<Usuario>(model);
+                int id = 0;
                 using var context = new UnidadDeTrabajo<Usuario>(new GimnasioContext());
                 context.genericDAL.Add(usuario);
-                return (context.Complete()) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
+                context.Complete();
+                id = usuario.IdUsuario;
+
+                bool compleRutina = false;
+                if (model.idEntrenador != 0)
+                {
+                    Rutina rutina = new Rutina
+                    {
+                        Descripcion = "Rutina Incial de " + model.Nombre + " " + model.Apellidos,
+                        FechaAsignacion = DateTime.Now,
+                        IdUsuarioCliente = id,
+                        IdUsuarioEntrenador = model.idEntrenador
+                    };
+
+                    using var rutinaContext = new UnidadDeTrabajo<Rutina>(new GimnasioContext());
+                    rutinaContext.genericDAL.Add(rutina);
+                    compleRutina = rutinaContext.Complete();
+                }
+
+                return (id != 0 && compleRutina) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
             }
             catch (Exception ex)
             {

@@ -29,6 +29,7 @@ namespace Gimnasio_FND.Controllers
 
                 var content = response.Content.ReadAsStringAsync().Result;
                 List<UsuarioViewModel> usuarios = JsonConvert.DeserializeObject<List<UsuarioViewModel>>(content);
+                
 
                 return View(usuarios);
             }
@@ -38,9 +39,9 @@ namespace Gimnasio_FND.Controllers
                 throw;
             }
         }
+
+
         #endregion
-
-
 
 
         #region Datos

@@ -22,7 +22,7 @@ namespace BackEndAPI.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetRutina()
+        public JsonResult GetRutinaEjercicio()
         {
             try
             {
@@ -30,7 +30,7 @@ namespace BackEndAPI.Controllers
                 IEnumerable<RutinaEjercicioDto> rutinasDto;
                 using (var context = new UnidadDeTrabajo<Rutina>(new GimnasioContext()))
                 {
-                    rutinas = context.rutinaDal.GetComplete();
+                    rutinas = context.rutinaDal.GetCompleteRutinaEjercicio();
                     rutinasDto = _mapper.Map<List<RutinaEjercicioDto>>(rutinas);
                 }
                 return new JsonResult(rutinasDto);
@@ -43,36 +43,77 @@ namespace BackEndAPI.Controllers
 
         }
 
-        //[HttpGet("GetRutinas/{id:int}")]
-        //public JsonResult GetRutinas(int id)
-        //{
-        //    try
-        //    {
-        //        List<RutinaXejercicio> rutinas;
-        //        List<RutinaEjercicioDto> rutinasDto;
-        //        using (var context = new UnidadDeTrabajo<Rutina>(new GimnasioContext()))
-        //        {
-        //            rutinas = context.rutinaDal.GetCompleteRutina(id);
-        //            rutinasDto = _mapper.Map<List<RutinaEjercicioDto>>(rutinas);
-        //        }
-        //        return new JsonResult(rutinasDto);
-        //    }
-        //    catch (Exception ex)
-        //    {
 
-        //        var s = ex.Message;
-        //        return new JsonResult(null);
-        //    }
+        [HttpGet("{id:int}")]
+        public JsonResult GetRutinasEjercicio(int id)
+        {
+            try
+            {
+                RutinaXejercicio rutinas;
+                RutinaEjercicioDto rutinasDto;
+                using (var context = new UnidadDeTrabajo<Rutina>(new GimnasioContext()))
+                {
+                    rutinas = context.rutinaDal.GetCompleteRutinaEjercicio(id);
+                    rutinasDto = _mapper.Map<RutinaEjercicioDto>(rutinas);
+                }
+                return new JsonResult(rutinasDto);
+            }
+            catch (Exception ex)
+            {
 
-        //}
+                var s = ex.Message;
+                return new JsonResult(null);
+            }
+
+        }
+
 
         [HttpPost]
-        public IActionResult CreateRutina(RutinaXejercicio rutina)
+        public IActionResult CreateRutinaEjercicio(RutinaXejercicio rutina)
         {
             try
             {
                 using var context = new UnidadDeTrabajo<RutinaXejercicio>(new GimnasioContext());
                 context.genericDAL.Add(rutina);
+                return (context.Complete()) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            }
+
+        }
+
+
+        [HttpPut]
+        public IActionResult UpdateRutinaEjercicio(RutinaXejercicio rutina)
+        {
+            try
+            {
+                using var context = new UnidadDeTrabajo<RutinaXejercicio>(new GimnasioContext());
+                context.genericDAL.Update(rutina);
+                return (context.Complete()) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            }
+
+        }
+
+
+        [HttpDelete("{id:int}")]
+        public IActionResult DeleteRutinaEjercicio(int id)
+        {
+            try
+            {
+                using var context = new UnidadDeTrabajo<RutinaXejercicio>(new GimnasioContext());
+                RutinaXejercicio rutina = context.genericDAL.Get(id);
+                context.genericDAL.Remove(rutina);
                 return (context.Complete()) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
             }
             catch (Exception ex)
