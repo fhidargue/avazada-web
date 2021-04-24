@@ -12,8 +12,6 @@ namespace BackEnd.Entities
         public int IdEjercicio { get; set; }
         public int Repeticiones { get; set; }
         public int Series { get; set; }
-        public string Nivel { get; set; }
-        public string Dia { get; set; }
 
         public virtual Ejercicio IdEjercicioNavigation { get; set; }
         public virtual Rutina IdRutinaNavigation { get; set; }

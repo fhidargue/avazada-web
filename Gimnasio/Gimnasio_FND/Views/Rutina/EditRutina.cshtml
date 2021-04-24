@@ -1,0 +1,70 @@
+﻿@model Gimnasio_FND.Models.ViewModel.RutinaViewModel
+
+@{
+    ViewData["Title"] = "EditRutina";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<partial name="_AddEjercicioPartial" model="new Gimnasio_FND.Models.ViewModel.RutinaXejercicio { IdRutina = Model.IdRutina, Ejercicios = Model.Ejercicios}" />
+
+<div class="p-3">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" value="@Model.Descripcion" class="form-control w-auto" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" value="@Model.IdUsuarioClienteNavigation.Nombre @Model.IdUsuarioClienteNavigation.Apellidos" class="form-control mt-2 w-auto" readonly />
+                </div>
+            </div>
+            <div class="row align-items-center">
+
+                <div class="ml-4">
+
+
+                    @*<a href="@Url.ActionLink("EditRutina","Rutina",new { id = item.IdRutina})" class="btn btn-outline-success">
+                            Editar Rutina
+                        </a>*@
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-2">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ejercicio_create">Agregar Ejercicio</button>
+                </div>
+            </div>
+            <hr />
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Ejercicio</th>
+                        <th scope="col">Intesidad</th>
+                        <th scope="col">Equipo</th>
+                        <th scope="col">Repeticiones</th>
+                        <th scope="col">Series</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model.RutinaXejercicios)
+                    {
+                        <tr>
+                            <td>@item.IdEjercicioNavigation.Descripcion</td>
+                            <td>@item.IdEjercicioNavigation.Intensidad</td>
+                            <td>@item.IdEjercicioNavigation.Equipo</td>
+                            <td>@item.Repeticiones</td>
+                            <td>@item.Series</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+

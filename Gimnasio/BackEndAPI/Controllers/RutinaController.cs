@@ -1,5 +1,7 @@
-﻿using BackEnd.DAL;
+﻿using AutoMapper;
+using BackEnd.DAL;
 using BackEnd.Entities;
+using BackEndAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,17 +15,26 @@ namespace BackEndAPI.Controllers
     [ApiController]
     public class RutinaController : ControllerBase
     {
+
+        private readonly IMapper _mapper;
+        public RutinaController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         [HttpGet]
         public JsonResult GetRutina()
         {
             try
             {
                 IEnumerable<Rutina> rutinas;
+                IEnumerable<RutinaDto> rutinasDto;
                 using (var context = new UnidadDeTrabajo<Rutina>(new GimnasioContext()))
                 {
-                    rutinas = context.genericDAL.GetAll();
+                    rutinas = context.rutinaDal.GetCompleteRutina();
+                    rutinasDto = _mapper.Map<List<RutinaDto>>(rutinas);
                 }
-                return new JsonResult(rutinas);
+                return new JsonResult(rutinasDto);
             }
             catch (Exception ex)
             {
@@ -33,17 +44,20 @@ namespace BackEndAPI.Controllers
 
         }
 
+
         [HttpGet("{id:int}")]
         public JsonResult GetRutina(int id)
         {
             try
             {
                 Rutina rutina;
+                RutinaDto rutinasDto;
                 using (var context = new UnidadDeTrabajo<Rutina>(new GimnasioContext()))
                 {
-                    rutina = context.genericDAL.Get(id);
+                    rutina = context.rutinaDal.GetCompleteRutina(id);
+                    rutinasDto = _mapper.Map<RutinaDto>(rutina);
                 }
-                return new JsonResult(rutina);
+                return new JsonResult(rutinasDto);
             }
             catch (Exception ex)
             {

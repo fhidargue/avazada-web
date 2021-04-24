@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<Gimnasio_FND.Models.ViewModel.RutinaViewModel>
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -37,7 +38,6 @@
 
 
 <form action="/" method="post">
-
     <div class="modal fade" id="ejercicio_create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -50,10 +50,7 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-
                         <label for="ejercicio">Ejercicio</label>
-                        <input type="text" class="form-control" required id="ejercicio" />
-
                     </div>
 
                 </div>
@@ -64,7 +61,6 @@
             </div>
         </div>
     </div>
-
 </form>
 
 
@@ -75,40 +71,42 @@
         Crear Rutina
     </button>
 
-    <div class="card">
-        <div class="card-header">
 
-            <div class="row align-items-center">
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <div class="card-header">
 
-                <p class="m-0">Rutina de Daniel</p>
+                <div class="row align-items-center">
 
-                <div class="ml-4">
+                    <p class="m-0 mr-2">Rutina: @item.Descripcion</p>
+                    <p class="m-0">Usuario: @item.IdUsuarioClienteNavigation.Nombre</p>
 
-                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ejercicio_create">
-                        Crear Ejercicio
-                    </button>
+                    <div class="ml-4">
+
+                        <a href="@Url.ActionLink("EditRutina","Rutina",new { id = item.IdRutina})" class="btn btn-outline-success">
+                            Editar Rutina
+                        </a>
+
+                    </div>
 
                 </div>
 
             </div>
+            <div class="card-body">
 
-        </div>
-        <div class="card-body">
-           
-            <!--
-
-    foreach(ejercicio){
-
-       <p class="card-text">Ejercicio</p>
+                @foreach (var value in item.RutinaXejercicios)
+                {
+                    <p class="card-text">@value.IdEjercicioNavigation.Descripcion @value.IdEjercicioNavigation.Equipo @value.IdEjercicioNavigation.Intensidad</p>
 
                 }
 
-        -->
-
+            </div>
         </div>
-    </div>
-
-
+    }
 
 </div>
+
+
+
 

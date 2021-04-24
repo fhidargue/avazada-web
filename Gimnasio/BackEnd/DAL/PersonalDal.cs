@@ -7,10 +7,10 @@ using System.Text;
 
 namespace BackEnd.DAL
 {
-    public class PersonalDal
+    public class PersonalDAL
     {
         private GimnasioContext _context;
-        public PersonalDal(GimnasioContext context)
+        public PersonalDAL(GimnasioContext context)
         {
             _context = context;
         }
@@ -27,7 +27,7 @@ namespace BackEnd.DAL
         {
             return _context.Usuarios
                 .Include(r => r.IdRolNavigation)
-                .Include(r => r.IdSucursalNavigation)
+                .Include(r => r.IdSucursalNavigation)                
                 .FirstOrDefault(r => r.IdUsuario == id);
         }
 

@@ -11,11 +11,13 @@ using System.Threading.Tasks;
 
 namespace Gimnasio_FND.Controllers
 {
+
+    
     public class UsuarioController : Controller
     {
 
         #region Vistas
-        [Authorize]
+        [Authorize(Roles = "Administrador")]
         public IActionResult Index()
         {
             try
