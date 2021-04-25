@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -224,6 +226,29 @@
 
                     </li>
 
+
+                    <li class="nav-item">
+                        <a href="@Url.ActionLink("MisClientes", "Rutina")" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Mis clientes
+                            </p>
+                        </a>
+
+                    </li>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Cliente"))
+                    {
+                        <li class="nav-item">
+                            <a href="@Url.ActionLink("IndexRutina", "Rutina", new {id = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value })" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Mis Rutinas
+                                </p>
+                            </a>
+
+                        </li>
+
+                    }
 
                 </ul>
             </nav>

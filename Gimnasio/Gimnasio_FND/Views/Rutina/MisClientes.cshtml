@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Gimnasio_FND.Models.ViewModel.RutinaViewModel>
+@{
+    ViewData["Title"] = "MisClientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<int> ids = new List<int>();
+}
+
+<h1 class="text-center my-4">Mis Clientes</h1>
+
+<div class="px-4">
+    <div class="table-responsive">
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th class="text-center">Ver Rutinas</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    @if (!ids.Contains(item.IdUsuarioCliente))
+                    {
+                        ids.Add(item.IdUsuarioCliente);
+                        <tr>
+                            <th>@item.IdUsuarioClienteNavigation.Cedula</th>
+                            <td>@item.IdUsuarioClienteNavigation.Nombre</td>
+                            <td>@item.IdUsuarioClienteNavigation.Apellidos</td>
+                            <td>@item.IdUsuarioClienteNavigation.Email</td>
+                            <td>@item.IdUsuarioClienteNavigation.Telefono</td>
+                            <td class="text-center">
+                                <a href="@Url.ActionLink("IndexRutina","Rutina", new { id = item.IdUsuarioCliente })" class="btn btn-info"><i class="fas fa-running"></i></a>
+                            </td>
+                        </tr>
+                    }
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -18,6 +18,8 @@ namespace BackEndAPI.Models
         public int Telefono { get; set; }
         public string Contrasenia { get; set; }
 
+        public int idEntrenador { get; set; }
+
         public virtual RolDto IdRolNavigation { get; set; }
         public virtual SucursalDto IdSucursalNavigation { get; set; }
     }

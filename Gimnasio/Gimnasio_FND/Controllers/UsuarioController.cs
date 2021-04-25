@@ -11,11 +11,13 @@ using System.Threading.Tasks;
 
 namespace Gimnasio_FND.Controllers
 {
+
+    
     public class UsuarioController : Controller
     {
 
         #region Vistas
-        [Authorize]
+        [Authorize(Roles = "Administrador")]
         public IActionResult Index()
         {
             try
@@ -27,6 +29,7 @@ namespace Gimnasio_FND.Controllers
 
                 var content = response.Content.ReadAsStringAsync().Result;
                 List<UsuarioViewModel> usuarios = JsonConvert.DeserializeObject<List<UsuarioViewModel>>(content);
+                
 
                 return View(usuarios);
             }
@@ -36,9 +39,9 @@ namespace Gimnasio_FND.Controllers
                 throw;
             }
         }
+
+
         #endregion
-
-
 
 
         #region Datos

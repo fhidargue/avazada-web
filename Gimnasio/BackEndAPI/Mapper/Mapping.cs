@@ -14,6 +14,11 @@ namespace BackEndAPI.Mapper
         {
             CreateMap<Usuario, UsuarioDto>().ReverseMap();
 
+            CreateMap<Rutina, RutinaDto>().ReverseMap();
+            CreateMap<RutinaXejercicio, RutinaEjercicioDto>().ReverseMap();
+            CreateMap<Ejercicio, EjercicioDto>().ReverseMap();
+
+
             CreateMap<Rol, RolDto>().ReverseMap();
 
             CreateMap<Sucursal, SucursalDto>().ReverseMap();

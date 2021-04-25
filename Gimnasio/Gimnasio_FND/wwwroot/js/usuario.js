@@ -1,6 +1,4 @@
 ﻿
-
-
 const getId = e => {
 
     console.clear();
@@ -70,3 +68,19 @@ const botones_edit = document.querySelectorAll('.edit');
 botones_edit.forEach(boton => boton.addEventListener('click', getId));
 
 
+
+
+
+const selectRol = () => {
+    const value = IdRol.value;
+    const entrenador = document.getElementById("entrenador");
+    if (value == 3) {
+        entrenador.removeAttribute("hidden")
+    } else {
+        entrenador.setAttribute("hidden", "")
+    }
+
+}
+
+const IdRol = document.getElementById("rol_create");
+IdRol.addEventListener("change", selectRol)

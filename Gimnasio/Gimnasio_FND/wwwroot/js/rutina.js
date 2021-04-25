@@ -3,43 +3,37 @@
     console.clear();
     let id;
     if (e.target.tagName == "I") {
-
         id = e.target.parentElement.id;
-
     } else {
-
         id = e.target.id;
-
     }
 
     $.ajax({
-
-        url: "Ejercicio/GetEjercicio",
+        url: "Rutina/GetRutinaEjercicio",
         type: "POST",
         dataType: "json",
         data: {
             id
         },
-
         success(datos) {
 
-            const { descripcion, intensidad, equipo, idEjercicio } = datos;
-
+            const { idRutinaEjercicio, repeticiones, series, idEjercicio } = datos;
             const inputs = document.querySelectorAll('.editar');
 
+            inputs[0].value = datos.idEjercicioNavigation.descripcion;
+            inputs[1].value = repeticiones;
+            inputs[2].value = series;
 
-            inputs[0].value = descripcion;
-            inputs[1].value = equipo;
-            inputs[2].value = intensidad;
-
-            const hidden = document.getElementById("IdEjercicio");
+            const hidden = document.getElementById("idEjercicioEdit");
             hidden.value = idEjercicio;
 
+            const hiddenRutinaEjericio = document.getElementById("IdRutinaEjercicio");
+            hiddenRutinaEjericio.value = idRutinaEjercicio;
         },
 
         error(error) {
 
-            console.log(datos);
+            console.log(error);
 
         }
 

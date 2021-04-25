@@ -11,14 +11,17 @@ namespace BackEnd.DAL
 
         public IDALGenerico<T> genericDAL;
 
-        public PersonalDal usuarioDal;
+        public PersonalDAL usuarioDal;
+        public RutinaDAL rutinaDal;
 
 
         public UnidadDeTrabajo(GimnasioContext _context)
         {
             context = _context;
             genericDAL = new DALGenericoImpl<T>(context);
-            usuarioDal = new PersonalDal(context);
+            usuarioDal = new PersonalDAL(context);
+            rutinaDal = new RutinaDAL(context);
+
 
         }
 
