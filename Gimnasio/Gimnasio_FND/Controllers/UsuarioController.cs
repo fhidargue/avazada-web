@@ -69,8 +69,6 @@ namespace Gimnasio_FND.Controllers
 
         }
 
-
-
         [HttpPost]
         public IActionResult CreateUsuario(UsuarioViewModel usuario)
         {
@@ -105,6 +103,26 @@ namespace Gimnasio_FND.Controllers
                 response.EnsureSuccessStatusCode();
 
                 TempData["datos"] = (response.IsSuccessStatusCode) ? "Usuario Actualizado" : "Hubo un error actualizando el usuario";
+
+                return RedirectToAction("Index", "Usuario");
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public IActionResult DeleteUsuario(UsuarioViewModel usuario)
+        {
+            try
+            {
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.DeleteResponse("api/Usuario/" + usuario.IdUsuario);
+                response.EnsureSuccessStatusCode();
+
+                //TempData["datos"] = (response.IsSuccessStatusCode) ? "Usuario Actualizado" : "Hubo un error actualizando el usuario";
 
                 return RedirectToAction("Index", "Usuario");
             }

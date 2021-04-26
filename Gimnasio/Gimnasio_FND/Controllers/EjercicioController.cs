@@ -106,6 +106,26 @@ namespace Gimnasio_FND.Controllers
                 throw;
             }
         }
+
+        [HttpPost]
+        public IActionResult DeleteEjercicio(EjercicioViewModel ejercicio)
+        {
+            try
+            {
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.DeleteResponse("api/Ejercicio/" + ejercicio.IdEjercicio);
+                response.EnsureSuccessStatusCode();
+
+                //TempData["datos"] = (response.IsSuccessStatusCode) ? "Usuario Actualizado" : "Hubo un error actualizando el usuario";
+
+                return RedirectToAction("Index", "Ejercicio");
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                throw;
+            }
+        }
         #endregion
 
     }

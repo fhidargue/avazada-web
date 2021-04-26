@@ -1,4 +1,9 @@
-﻿const getId = e => {
+﻿function idEjercicio(id) {
+    let ejercicio = document.getElementById('deleteEjercicio');
+    ejercicio.value = id;
+}
+
+const getId = e => {
 
     console.clear();
     let id;

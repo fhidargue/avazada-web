@@ -12,6 +12,8 @@
 
 <partial name="_UpdateSucursalPartial" model='new Gimnasio_FND.Models.ViewModel.SucursalViewModel()' />
 
+<partial name="_DeleteSucursalPartial" model='new Gimnasio_FND.Models.ViewModel.SucursalViewModel()' />
+
 
 
 <div class="px-4">
@@ -43,7 +45,7 @@
                         <td class="d-flex ">
 
                             <button id="@item.IdSucursal" data-toggle="modal" data-target="#modal_update" class="btn btn-info mr-1 edit"><i class="far fa-edit"></i></button>
-                            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#modal_delete" onclick="idSucursal(@item.IdSucursal)"><i class="fas fa-trash-alt"></i></button>
 
                         </td>
                     </tr>

@@ -1,5 +1,7 @@
-﻿using BackEnd.DAL;
+﻿using AutoMapper;
+using BackEnd.DAL;
 using BackEnd.Entities;
+using BackEndAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,41 +11,40 @@ using System.Threading.Tasks;
 
 namespace BackEndAPI.Controllers
 {
-    [Route("api/Ejercicio")]
+    [Route("api/Subscripcion")]
     [ApiController]
-    public class EjercicioController : ControllerBase
+    public class SubscripcionController : ControllerBase
     {
         [HttpGet]
-        public JsonResult GetEjercicio()
+        public JsonResult GetSubscripciones()
         {
             try
             {
-                IEnumerable<Ejercicio> ejercicios;
-                using (var context = new UnidadDeTrabajo<Ejercicio>(new GimnasioContext()))
+                IEnumerable<Subscripcion> subscripciones;
+                using (var context = new UnidadDeTrabajo<Subscripcion>(new GimnasioContext()))
                 {
-                    ejercicios = context.genericDAL.GetAll();
+                    subscripciones = context.genericDAL.GetAll();
                 }
-                return new JsonResult(ejercicios);
+                return new JsonResult(subscripciones);
             }
             catch (Exception ex)
             {
                 var s = ex.Message;
                 return new JsonResult(null);
             }
-
         }
 
         [HttpGet("{id:int}")]
-        public JsonResult GetEjercicio(int id)
+        public JsonResult GetSubscripcion(int id)
         {
             try
             {
-                Ejercicio ejercicio;
-                using (var context = new UnidadDeTrabajo<Ejercicio>(new GimnasioContext()))
+                Subscripcion subscripcion;
+                using (var context = new UnidadDeTrabajo<Subscripcion>(new GimnasioContext()))
                 {
-                    ejercicio = context.genericDAL.Get(id);
+                    subscripcion = context.genericDAL.Get(id);
                 }
-                return new JsonResult(ejercicio);
+                return new JsonResult(subscripcion);
             }
             catch (Exception ex)
             {
@@ -51,17 +52,16 @@ namespace BackEndAPI.Controllers
                 var s = ex.Message;
                 return new JsonResult(null);
             }
-
         }
-
 
         [HttpPost]
-        public IActionResult CreateEjercicio(Ejercicio ejercicio)
+        [Route("agregar")]
+        public IActionResult CreateSubscripcion(Subscripcion subscripcion)
         {
             try
             {
-                using var context = new UnidadDeTrabajo<Ejercicio>(new GimnasioContext());
-                context.genericDAL.Add(ejercicio);
+                using var context = new UnidadDeTrabajo<Subscripcion>(new GimnasioContext());
+                context.genericDAL.Add(subscripcion);
                 return (context.Complete()) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
             }
             catch (Exception ex)
@@ -70,17 +70,16 @@ namespace BackEndAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
 
             }
-
         }
-
 
         [HttpPut]
-        public IActionResult UpdateEjercicio(Ejercicio ejercicio)
+        [Route("actualizar")]
+        public IActionResult UpdateSubscripcion(Subscripcion subscripcion)
         {
             try
             {
-                using var context = new UnidadDeTrabajo<Ejercicio>(new GimnasioContext());
-                context.genericDAL.Update(ejercicio);
+                using var context = new UnidadDeTrabajo<Subscripcion>(new GimnasioContext());
+                context.genericDAL.Update(subscripcion);
                 return (context.Complete()) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
             }
             catch (Exception ex)
@@ -89,18 +88,16 @@ namespace BackEndAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
 
             }
-
         }
 
-        
         [HttpDelete("{id:int}")]
-        public IActionResult DeleteEjercicio(int id)
+        public IActionResult DeleteSubscripcion(int id)
         {
             try
             {
-                using var context = new UnidadDeTrabajo<Ejercicio>(new GimnasioContext());
-                Ejercicio ejercicio = context.genericDAL.Get(id);
-                context.genericDAL.Remove(ejercicio);
+                using var context = new UnidadDeTrabajo<Subscripcion>(new GimnasioContext());
+                Subscripcion subscripcion = context.genericDAL.Get(id);
+                context.genericDAL.Remove(subscripcion);
                 return (context.Complete()) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
             }
             catch (Exception ex)
@@ -110,6 +107,5 @@ namespace BackEndAPI.Controllers
             }
 
         }
-        
     }
 }

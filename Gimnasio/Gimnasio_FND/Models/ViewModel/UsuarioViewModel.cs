@@ -20,7 +20,7 @@ namespace Gimnasio_FND.Models.ViewModel
         public int idEntrenador { get; set; }
 
         public List<UsuarioViewModel> Entrenadores { get; set; }
-
+    
         public virtual RolViewModel IdRolNavigation { get; set; }
     }
 }

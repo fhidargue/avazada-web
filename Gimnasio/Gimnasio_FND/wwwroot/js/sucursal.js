@@ -1,4 +1,9 @@
-﻿const getId = e => {
+﻿function idSucursal(id) {
+    let sucursal = document.getElementById('deleteSucursal');
+    sucursal.value = id;
+}
+
+const getId = e => {
 
     console.clear();
     let id;

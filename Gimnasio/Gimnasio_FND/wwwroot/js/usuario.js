@@ -1,4 +1,8 @@
-﻿
+﻿function idUsuario(id) {
+    let usuario = document.getElementById('deleteUsuario');
+    usuario.value = id;
+}
+
 const getId = e => {
 
     console.clear();

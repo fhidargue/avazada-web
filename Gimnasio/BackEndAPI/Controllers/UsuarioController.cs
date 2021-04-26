@@ -122,8 +122,7 @@ namespace BackEndAPI.Controllers
             }
 
         }
-
-        /*
+        
         [HttpDelete("{id:int}")]
         public IActionResult DeleteUser(int id)
         {
@@ -139,9 +138,6 @@ namespace BackEndAPI.Controllers
                 var s = ex.Message;
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
-
-        }
-        */
-
+        }      
     }
 }

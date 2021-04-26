@@ -92,7 +92,7 @@ namespace BackEndAPI.Controllers
 
         }
 
-        /*
+        
         [HttpDelete("{id:int}")]
         public IActionResult DeleteSucursal(int id)
         {
@@ -110,6 +110,6 @@ namespace BackEndAPI.Controllers
             }
 
         }
-        */
+        
     }
 }

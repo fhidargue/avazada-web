@@ -1,6 +1,5 @@
 ﻿using Gimnasio_FND.Models.ViewModel;
 using Gimnasio_FND.Repository;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -11,50 +10,44 @@ using System.Threading.Tasks;
 
 namespace Gimnasio_FND.Controllers
 {
-    public class SucursalController : Controller
+    public class SubscripcionController : Controller
     {
-        #region Vistas
-        [Authorize]
         public IActionResult Index()
         {
             try
             {
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.GetResponse("api/Sucursal");
+                HttpResponseMessage response = serviceObj.GetResponse("api/Subscripcion");
 
                 response.EnsureSuccessStatusCode();
 
                 var content = response.Content.ReadAsStringAsync().Result;
-                List<SucursalViewModel> sucursals = JsonConvert.DeserializeObject<List<SucursalViewModel>>(content);
+                List<SubscripcionViewModel> subscripciones = JsonConvert.DeserializeObject<List<SubscripcionViewModel>>(content);
 
-                return View(sucursals);
+                return View(subscripciones);
             }
             catch (Exception ex)
             {
                 var s = ex.Message;
                 throw;
             }
-
         }
-        #endregion
-
-
-        #region Datos
 
         [HttpPost]
-        public IActionResult GetSucursal(int id)
+        public IActionResult GetSubscripcion(int id)
         {
             try
             {
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.GetResponse("api/Sucursal/" + id);
+                HttpResponseMessage response = serviceObj.GetResponse("api/Subscripcion/" + id);
 
                 response.EnsureSuccessStatusCode();
 
                 var content = response.Content.ReadAsStringAsync().Result;
-                SucursalViewModel sucursal = JsonConvert.DeserializeObject<SucursalViewModel>(content);
-
-                return Json(sucursal);
+                SubscripcionViewModel subscripcion = JsonConvert.DeserializeObject<SubscripcionViewModel>(content);
+                subscripcion.FechaInicio = subscripcion.FechaCreacion.ToString("yyyy-mm-dd");
+                subscripcion.FechaFin = subscripcion.FechaVencimiento.ToString("yyyy-mm-dd");
+                return Json(subscripcion);
             }
             catch (Exception ex)
             {
@@ -63,20 +56,19 @@ namespace Gimnasio_FND.Controllers
             }
         }
 
-
-
         [HttpPost]
-        public IActionResult CreateSucursal(SucursalViewModel sucursal)
+        public IActionResult CreateSubscripcion(SubscripcionViewModel subscripcion)
         {
             try
             {
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.PostResponse("api/Sucursal", sucursal);
+                HttpResponseMessage response = serviceObj.PostResponse("api/Subscripcion/agregar", subscripcion);
                 response.EnsureSuccessStatusCode();
+                var content = response.Content.ReadAsStringAsync().Result;
+                
+                //TempData["datos"] = (response.IsSuccessStatusCode) ? "Subscripción Creada" : "Hubo un error creando la subscripción";
 
-                TempData["datos"] = (response.IsSuccessStatusCode) ? "Sucursal Creado" : "Hubo un error creando el sucursal";
-
-                return RedirectToAction("Index", "Sucursal");
+                return RedirectToAction("Index", "Subscripcion");
             }
             catch (Exception)
             {
@@ -85,20 +77,18 @@ namespace Gimnasio_FND.Controllers
             }
         }
 
-
-
         [HttpPost]
-        public IActionResult UpdateSucursal(SucursalViewModel sucursal)
+        public IActionResult UpdateSubscripcion(SubscripcionViewModel subscripcion)
         {
             try
             {
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.PutResponse("api/Sucursal", sucursal);
+                HttpResponseMessage response = serviceObj.PutResponse("api/Subscripcion/actualizar", subscripcion);
                 response.EnsureSuccessStatusCode();
 
-                TempData["datos"] = (response.IsSuccessStatusCode) ? "Sucursal Actualizado" : "Hubo un error actualizando el sucursal";
+                //TempData["datos"] = (response.IsSuccessStatusCode) ? "Subscripción Actualizada" : "Hubo un error actualizando la subscripción";
 
-                return RedirectToAction("Index", "Sucursal");
+                return RedirectToAction("Index", "Subscripcion");
             }
             catch (Exception ex)
             {
@@ -108,17 +98,17 @@ namespace Gimnasio_FND.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteSucursal(SucursalViewModel sucursal)
+        public IActionResult DeleteSubscripcion(SubscripcionViewModel subscripcion)
         {
             try
             {
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.DeleteResponse("api/Sucursal/" + sucursal.IdSucursal);
+                HttpResponseMessage response = serviceObj.DeleteResponse("api/Subscripcion/" + subscripcion.IdSubscripcion);
                 response.EnsureSuccessStatusCode();
 
                 //TempData["datos"] = (response.IsSuccessStatusCode) ? "Usuario Actualizado" : "Hubo un error actualizando el usuario";
 
-                return RedirectToAction("Index", "Sucursal");
+                return RedirectToAction("Index", "Subscripcion");
             }
             catch (Exception ex)
             {
@@ -126,6 +116,5 @@ namespace Gimnasio_FND.Controllers
                 throw;
             }
         }
-        #endregion
     }
 }
