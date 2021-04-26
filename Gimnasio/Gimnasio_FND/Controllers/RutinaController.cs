@@ -48,8 +48,11 @@ namespace Gimnasio_FND.Controllers
         {
             try
             {
+                int userId = Convert.ToInt32(User.Claims.FirstOrDefault(r => r.Type == ClaimTypes.NameIdentifier).Value);
+
                 ServiceRepository serviceObj = new ServiceRepository();
                 HttpResponseMessage response = serviceObj.GetResponse("api/Rutina");
+
 
                 var content = response.Content.ReadAsStringAsync().Result;
                 List<RutinaViewModel> rutinas = JsonConvert.DeserializeObject<List<RutinaViewModel>>(content);
@@ -60,11 +63,10 @@ namespace Gimnasio_FND.Controllers
 
                 if (User.IsInRole("Entrenador"))
                 {
-                    return View(rutinas.Where(r => r.IdUsuarioCliente == id));
+                    return View(rutinas.Where(r => r.IdUsuarioCliente == id && r.IdUsuarioEntrenador == userId));
                 }
                 else
                 {
-                    int userId = Convert.ToInt32(User.Claims.FirstOrDefault(r => r.Type == ClaimTypes.NameIdentifier).Value);
                     return View(rutinas.Where(r => r.IdUsuarioCliente == userId));
                 }
 

@@ -12,7 +12,7 @@
 
 <div class="p-3">
 
-    @if (Model.ToList().Count > 0)
+    @if (Model.ToList().Count > 0 && User.IsInRole("Entrenador"))
     {
         <button type="button" class="btn btn-success mb-4" data-toggle="modal" data-target="#rutina_create">
             Crear Rutina
@@ -28,14 +28,17 @@
 
                     <p class="m-0 mr-2">Rutina: @item.Descripcion</p>
                     <p class="m-0">Usuario: @item.IdUsuarioClienteNavigation.Nombre</p>
+                    @if (User.IsInRole("Entrenador"))
+                    {
+                        <div class="ml-4">
 
-                    <div class="ml-4">
+                            <a href="@Url.ActionLink("EditRutina","Rutina",new { id = item.IdRutina})" class="btn btn-outline-success">
+                                Editar Rutina
+                            </a>
 
-                        <a href="@Url.ActionLink("EditRutina","Rutina",new { id = item.IdRutina})" class="btn btn-outline-success">
-                            Editar Rutina
-                        </a>
+                        </div>
+                    }
 
-                    </div>
 
                 </div>
 
