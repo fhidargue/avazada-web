@@ -1,5 +1,7 @@
-﻿using BackEnd.DAL;
+﻿using AutoMapper;
+using BackEnd.DAL;
 using BackEnd.Entities;
+using BackEndAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,15 +15,23 @@ namespace BackEndAPI.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
+
+        private readonly IMapper _mapper;
+
+        public UsuarioController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         [HttpGet]
         public JsonResult GetUsers()
         {
             try
             {
-                IEnumerable<Usuario> usuarios;
+                IEnumerable<UsuarioDto> usuarios;
                 using (var context = new UnidadDeTrabajo<Usuario>(new GimnasioContext()))
                 {
-                    usuarios = context.genericDAL.GetAll();
+                    usuarios = _mapper.Map<List<UsuarioDto>>(context.usuarioDal.GetComplete());
                 }
                 return new JsonResult(usuarios);
             }
@@ -38,10 +48,10 @@ namespace BackEndAPI.Controllers
         {
             try
             {
-                Usuario usuario;
+                UsuarioDto usuario;
                 using (var context = new UnidadDeTrabajo<Usuario>(new GimnasioContext()))
                 {
-                    usuario = context.genericDAL.Get(id);
+                    usuario = _mapper.Map<UsuarioDto>(context.usuarioDal.GetComplete(id));
                 }
                 return new JsonResult(usuario);
             }
@@ -56,13 +66,34 @@ namespace BackEndAPI.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateUser(Usuario usuario)
+        public IActionResult CreateUser(UsuarioDto model)
         {
             try
             {
+                Usuario usuario = _mapper.Map<Usuario>(model);
+                int id = 0;
                 using var context = new UnidadDeTrabajo<Usuario>(new GimnasioContext());
                 context.genericDAL.Add(usuario);
-                return (context.Complete()) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
+                context.Complete();
+                id = usuario.IdUsuario;
+
+                bool compleRutina = false;
+                if (model.idEntrenador != 0)
+                {
+                    Rutina rutina = new Rutina
+                    {
+                        Descripcion = "Rutina Incial de " + model.Nombre + " " + model.Apellidos,
+                        FechaAsignacion = DateTime.Now,
+                        IdUsuarioCliente = id,
+                        IdUsuarioEntrenador = model.idEntrenador
+                    };
+
+                    using var rutinaContext = new UnidadDeTrabajo<Rutina>(new GimnasioContext());
+                    rutinaContext.genericDAL.Add(rutina);
+                    compleRutina = rutinaContext.Complete();
+                }
+
+                return (id != 0 && compleRutina) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
             }
             catch (Exception ex)
             {
@@ -74,7 +105,7 @@ namespace BackEndAPI.Controllers
         }
 
 
-        [HttpPatch]
+        [HttpPut]
         public IActionResult UpdateUser(Usuario usuario)
         {
             try
@@ -91,8 +122,7 @@ namespace BackEndAPI.Controllers
             }
 
         }
-
-        /*
+        
         [HttpDelete("{id:int}")]
         public IActionResult DeleteUser(int id)
         {
@@ -108,9 +138,6 @@ namespace BackEndAPI.Controllers
                 var s = ex.Message;
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
-
-        }
-        */
-
+        }      
     }
 }

@@ -74,7 +74,7 @@ namespace BackEndAPI.Controllers
         }
 
 
-        [HttpPatch]
+        [HttpPut]
         public IActionResult UpdateEjercicio(Ejercicio ejercicio)
         {
             try
@@ -92,7 +92,7 @@ namespace BackEndAPI.Controllers
 
         }
 
-        /*
+        
         [HttpDelete("{id:int}")]
         public IActionResult DeleteEjercicio(int id)
         {
@@ -110,6 +110,6 @@ namespace BackEndAPI.Controllers
             }
 
         }
-        */
+        
     }
 }

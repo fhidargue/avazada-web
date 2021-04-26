@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Gimnasio_FND.Models.ViewModel.EjercicioViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center my-4">Ejercicios</h1>
+
+
+
+<partial name="_CreateEjercicioPartial" model="new Gimnasio_FND.Models.ViewModel.EjercicioViewModel()" />
+
+<partial name="_UpdateEjercicioPartial" model="new Gimnasio_FND.Models.ViewModel.EjercicioViewModel()" />
+
+<partial name="_DeleteEjercicioPartial" model="new Gimnasio_FND.Models.ViewModel.EjercicioViewModel()" />
+
+<div class="px-4">
+
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modal_create">
+        Crear ejercicio
+    </button>
+    <div class="table-responsive">
+
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Descripción</th>
+                    <th>Intensidad</th>
+                    <th>Equipo</th>
+                    <th>Acciones</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.Descripcion</td>
+                        <td>@item.Intensidad</td>
+                        <td>@item.Equipo</td>
+                        <td class="d-flex ">
+
+                            <button id="@item.IdEjercicio" data-toggle="modal" data-target="#modal_update" class="btn btn-info mr-1 edit"><i class="far fa-edit"></i></button>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#modal_delete" onclick="idEjercicio(@item.IdEjercicio)"><i class="fas fa-trash-alt"></i></button>
+
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+<script src="~/js/ejercicio.js"></script>

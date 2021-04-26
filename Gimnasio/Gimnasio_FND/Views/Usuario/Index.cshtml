@@ -1,7 +1,61 @@
-﻿
+﻿@model IEnumerable<Gimnasio_FND.Models.ViewModel.UsuarioViewModel>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="text-center my-4">Usuarios</h1>
 
+
+
+<partial name="_CreateUserPartial" model='new Gimnasio_FND.Models.ViewModel.UsuarioViewModel {Entrenadores = Model.Where(r => r.IdRol == 2).ToList() }' />
+
+
+<partial name="_UpdateUserPartial" model='new Gimnasio_FND.Models.ViewModel.UsuarioViewModel()' />
+
+<partial name="_DeleteUserPartial" model='new Gimnasio_FND.Models.ViewModel.UsuarioViewModel()' />
+
+
+
+<div class="px-4">
+
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modal_create">
+        Crear usuario
+    </button>
+
+    <div class="table-responsive">
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th>@item.Cedula</th>
+                        <td>@item.Nombre</td>
+                        <td>@item.Apellidos</td>
+                        <td>@item.Email</td>
+                        <td>@item.Telefono</td>
+                        <td class="d-flex ">
+
+                            <button id="@item.IdUsuario" data-toggle="modal" data-target="#modal_update" class="btn btn-info mr-1 edit"><i class="far fa-edit"></i></button>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#modal_delete" onclick="idUsuario(@item.IdUsuario)"><i class="fas fa-trash-alt"></i></button>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script src="~/js/usuario.js"></script>

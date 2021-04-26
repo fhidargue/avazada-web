@@ -54,7 +54,7 @@ namespace BackEndAPI.Controllers
         }
 
 
-        [HttpPatch]
+        [HttpPut]
         public IActionResult UpdateMedida(Medida medidas)
         {
             try

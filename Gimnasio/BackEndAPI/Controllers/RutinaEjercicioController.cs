@@ -11,28 +11,27 @@ using System.Threading.Tasks;
 
 namespace BackEndAPI.Controllers
 {
-    [Route("api/Rutina")]
+    [Route("api/RutinaEjercicio")]
     [ApiController]
-    public class RutinaController : ControllerBase
+    public class RutinaEjercicioController : ControllerBase
     {
-
         private readonly IMapper _mapper;
-        public RutinaController(IMapper mapper)
+        public RutinaEjercicioController(IMapper mapper)
         {
             _mapper = mapper;
         }
 
         [HttpGet]
-        public JsonResult GetRutina()
+        public JsonResult GetRutinaEjercicio()
         {
             try
             {
-                IEnumerable<Rutina> rutinas;
-                IEnumerable<RutinaDto> rutinasDto;
+                IEnumerable<RutinaXejercicio> rutinas;
+                IEnumerable<RutinaEjercicioDto> rutinasDto;
                 using (var context = new UnidadDeTrabajo<Rutina>(new GimnasioContext()))
                 {
-                    rutinas = context.rutinaDal.GetCompleteRutina();
-                    rutinasDto = _mapper.Map<List<RutinaDto>>(rutinas);
+                    rutinas = context.rutinaDal.GetCompleteRutinaEjercicio();
+                    rutinasDto = _mapper.Map<List<RutinaEjercicioDto>>(rutinas);
                 }
                 return new JsonResult(rutinasDto);
             }
@@ -46,16 +45,16 @@ namespace BackEndAPI.Controllers
 
 
         [HttpGet("{id:int}")]
-        public JsonResult GetRutina(int id)
+        public JsonResult GetRutinasEjercicio(int id)
         {
             try
             {
-                Rutina rutina;
-                RutinaDto rutinasDto;
+                RutinaXejercicio rutinas;
+                RutinaEjercicioDto rutinasDto;
                 using (var context = new UnidadDeTrabajo<Rutina>(new GimnasioContext()))
                 {
-                    rutina = context.rutinaDal.GetCompleteRutina(id);
-                    rutinasDto = _mapper.Map<RutinaDto>(rutina);
+                    rutinas = context.rutinaDal.GetCompleteRutinaEjercicio(id);
+                    rutinasDto = _mapper.Map<RutinaEjercicioDto>(rutinas);
                 }
                 return new JsonResult(rutinasDto);
             }
@@ -70,11 +69,11 @@ namespace BackEndAPI.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateRutina(Rutina rutina)
+        public IActionResult CreateRutinaEjercicio(RutinaXejercicio rutina)
         {
             try
             {
-                using var context = new UnidadDeTrabajo<Rutina>(new GimnasioContext());
+                using var context = new UnidadDeTrabajo<RutinaXejercicio>(new GimnasioContext());
                 context.genericDAL.Add(rutina);
                 return (context.Complete()) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
             }
@@ -89,11 +88,11 @@ namespace BackEndAPI.Controllers
 
 
         [HttpPut]
-        public IActionResult UpdateRutina(Rutina rutina)
+        public IActionResult UpdateRutinaEjercicio(RutinaXejercicio rutina)
         {
             try
             {
-                using var context = new UnidadDeTrabajo<Rutina>(new GimnasioContext());
+                using var context = new UnidadDeTrabajo<RutinaXejercicio>(new GimnasioContext());
                 context.genericDAL.Update(rutina);
                 return (context.Complete()) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
             }
@@ -106,14 +105,14 @@ namespace BackEndAPI.Controllers
 
         }
 
-        /*
+
         [HttpDelete("{id:int}")]
-        public IActionResult DeleteRutina(int id)
+        public IActionResult DeleteRutinaEjercicio(int id)
         {
             try
             {
-                using var context = new UnidadDeTrabajo<Rutina>(new GimnasioContext());
-                Rutina rutina = context.genericDAL.Get(id);
+                using var context = new UnidadDeTrabajo<RutinaXejercicio>(new GimnasioContext());
+                RutinaXejercicio rutina = context.genericDAL.Get(id);
                 context.genericDAL.Remove(rutina);
                 return (context.Complete()) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
             }
@@ -121,9 +120,9 @@ namespace BackEndAPI.Controllers
             {
                 var s = ex.Message;
                 return StatusCode(StatusCodes.Status500InternalServerError);
+
             }
 
         }
-        */
     }
 }

@@ -31,7 +31,7 @@ namespace BackEnd.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=25.14.47.22;Database=Gimnasio;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=25.14.47.22;Database=Gimnasio;Uid=PGAW;Pwd=HolaMundo123;");
             }
         }
 
@@ -176,19 +176,11 @@ namespace BackEnd.Entities
 
                 entity.Property(e => e.IdRutinaEjercicio).HasColumnName("ID_Rutina_Ejercicio");
 
-                entity.Property(e => e.Dia)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.IdEjercicio).HasColumnName("Id_Ejercicio");
 
                 entity.Property(e => e.IdRutina).HasColumnName("Id_Rutina");
 
-                entity.Property(e => e.Nivel)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
 
                 entity.HasOne(d => d.IdEjercicioNavigation)
                     .WithMany(p => p.RutinaXejercicios)

@@ -1,0 +1,43 @@
+﻿
+@model Gimnasio_FND.Models.ViewModel.EjercicioViewModel
+
+<form method="post" asp-action="CreateEjercicio" asp-controller="Ejercicio">
+
+    <div class="modal fade" id="modal_create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Crear ejercicio</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+
+                        <label for="descripcion_create">Descripción</label>
+                        <input required type="text" id="descripcion_create" class="form-control" asp-for="Descripcion" name="Descripcion">
+                    </div>
+                    <div class="form-group">
+                        <label for="equipo_create">Equipo</label>
+                        <input required type="text" id="equipo_create" class="form-control" asp-for="Equipo" name="Equipo">
+                    </div>
+                    <div class="form-group">
+                        <label for="Intensidad">Intesidad del equipo</label>
+                        <select class="form-control" asp-for="Intensidad" required>
+                            <option value="">-- Seleccione la intensidad --</option>
+                            <option value="Muy Intenso">Muy Intenso</option>
+                            <option value="Intenso">Intenso</option>
+                            <option value="Poco Intenso">Poco Intenso</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

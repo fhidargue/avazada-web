@@ -11,53 +11,40 @@ using System.Threading.Tasks;
 
 namespace BackEndAPI.Controllers
 {
-    [Route("api/Rutina")]
+    [Route("api/Subscripcion")]
     [ApiController]
-    public class RutinaController : ControllerBase
+    public class SubscripcionController : ControllerBase
     {
-
-        private readonly IMapper _mapper;
-        public RutinaController(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
-
         [HttpGet]
-        public JsonResult GetRutina()
+        public JsonResult GetSubscripciones()
         {
             try
             {
-                IEnumerable<Rutina> rutinas;
-                IEnumerable<RutinaDto> rutinasDto;
-                using (var context = new UnidadDeTrabajo<Rutina>(new GimnasioContext()))
+                IEnumerable<Subscripcion> subscripciones;
+                using (var context = new UnidadDeTrabajo<Subscripcion>(new GimnasioContext()))
                 {
-                    rutinas = context.rutinaDal.GetCompleteRutina();
-                    rutinasDto = _mapper.Map<List<RutinaDto>>(rutinas);
+                    subscripciones = context.genericDAL.GetAll();
                 }
-                return new JsonResult(rutinasDto);
+                return new JsonResult(subscripciones);
             }
             catch (Exception ex)
             {
                 var s = ex.Message;
                 return new JsonResult(null);
             }
-
         }
-
 
         [HttpGet("{id:int}")]
-        public JsonResult GetRutina(int id)
+        public JsonResult GetSubscripcion(int id)
         {
             try
             {
-                Rutina rutina;
-                RutinaDto rutinasDto;
-                using (var context = new UnidadDeTrabajo<Rutina>(new GimnasioContext()))
+                Subscripcion subscripcion;
+                using (var context = new UnidadDeTrabajo<Subscripcion>(new GimnasioContext()))
                 {
-                    rutina = context.rutinaDal.GetCompleteRutina(id);
-                    rutinasDto = _mapper.Map<RutinaDto>(rutina);
+                    subscripcion = context.genericDAL.Get(id);
                 }
-                return new JsonResult(rutinasDto);
+                return new JsonResult(subscripcion);
             }
             catch (Exception ex)
             {
@@ -65,17 +52,16 @@ namespace BackEndAPI.Controllers
                 var s = ex.Message;
                 return new JsonResult(null);
             }
-
         }
-
 
         [HttpPost]
-        public IActionResult CreateRutina(Rutina rutina)
+        [Route("agregar")]
+        public IActionResult CreateSubscripcion(Subscripcion subscripcion)
         {
             try
             {
-                using var context = new UnidadDeTrabajo<Rutina>(new GimnasioContext());
-                context.genericDAL.Add(rutina);
+                using var context = new UnidadDeTrabajo<Subscripcion>(new GimnasioContext());
+                context.genericDAL.Add(subscripcion);
                 return (context.Complete()) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
             }
             catch (Exception ex)
@@ -84,17 +70,16 @@ namespace BackEndAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
 
             }
-
         }
-
 
         [HttpPut]
-        public IActionResult UpdateRutina(Rutina rutina)
+        [Route("actualizar")]
+        public IActionResult UpdateSubscripcion(Subscripcion subscripcion)
         {
             try
             {
-                using var context = new UnidadDeTrabajo<Rutina>(new GimnasioContext());
-                context.genericDAL.Update(rutina);
+                using var context = new UnidadDeTrabajo<Subscripcion>(new GimnasioContext());
+                context.genericDAL.Update(subscripcion);
                 return (context.Complete()) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
             }
             catch (Exception ex)
@@ -103,18 +88,16 @@ namespace BackEndAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
 
             }
-
         }
 
-        /*
         [HttpDelete("{id:int}")]
-        public IActionResult DeleteRutina(int id)
+        public IActionResult DeleteSubscripcion(int id)
         {
             try
             {
-                using var context = new UnidadDeTrabajo<Rutina>(new GimnasioContext());
-                Rutina rutina = context.genericDAL.Get(id);
-                context.genericDAL.Remove(rutina);
+                using var context = new UnidadDeTrabajo<Subscripcion>(new GimnasioContext());
+                Subscripcion subscripcion = context.genericDAL.Get(id);
+                context.genericDAL.Remove(subscripcion);
                 return (context.Complete()) ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
             }
             catch (Exception ex)
@@ -124,6 +107,5 @@ namespace BackEndAPI.Controllers
             }
 
         }
-        */
     }
 }

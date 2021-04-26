@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Gimnasio_FND.Models.ViewModel.SubscripcionViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center my-4">Subscripciones</h1>
+
+
+
+<partial name="_CreateSubsPartial" model='new Gimnasio_FND.Models.ViewModel.SubscripcionViewModel()' />
+
+
+<partial name="_UpdateSubsPartial" model='new Gimnasio_FND.Models.ViewModel.SubscripcionViewModel()' />
+
+<partial name="_DeleteSubsPartial" model='new Gimnasio_FND.Models.ViewModel.SubscripcionViewModel()' />
+
+
+
+<div class="px-4">
+
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modal_create">
+        Crear subscripción
+    </button>
+    <div class="table-responsive">
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID Subscripción</th>
+                    <th>ID Usuario</th>
+                    <th>Fecha de Creación</th>
+                    <th>Fecha de Vencimiento</th>
+                    <th>Método de Pago</th>
+                    <th>Monto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th>@item.IdSubscripcion</th>
+                        <td>@item.IdUsuario</td>
+                        <td>@item.FechaCreacion</td>
+                        <td>@item.FechaVencimiento</td>
+                        <td>@item.MetodoPago</td>
+                        <td>@item.Monto</td>
+                        <td class="d-flex ">
+                            <button id="@item.IdSubscripcion" data-toggle="modal" data-target="#modal_update" class="btn btn-info mr-1 edit"><i class="far fa-edit"></i></button>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#modal_delete" onclick="idSubscripcion(@item.IdSubscripcion)"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="~/js/subscripcion.js"></script>

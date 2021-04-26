@@ -1,0 +1,43 @@
+﻿@model Gimnasio_FND.Models.ViewModel.SubscripcionViewModel
+
+
+<form method="post" asp-action="CreateSubscripcion" asp-controller="Subscripcion">
+    <div class="modal fade" id="modal_create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Crear subscripción</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="usuario_create">ID del Usuario</label>
+                        <input required type="text" id="usuario_create" class="form-control" asp-for="IdUsuario" name="IdUsuario">
+                    </div>
+                    <div class="form-group">
+                        <label for="inicio_create">Fecha de Creación</label>
+                        <input required type="date" id="inicio_create" min="2021-01-01" max="2100-01-01" class="form-control" asp-for="FechaCreacion" name="FechaCreacion">
+                    </div>
+                    <div class="form-group">
+                        <label for="fin_create">Fecha de Vencimiento</label>
+                        <input required type="date" id="fin_create" min="2021-01-01" max="2100-01-01" class="form-control" asp-for="FechaVencimiento" name="FechaVencimiento">
+                    </div>
+                    <div class="form-group">
+                        <label for="pago_create">Método de Pago</label>
+                        <input required type="text" id="pago_create" class="form-control" asp-for="MetodoPago" name="MetodoPago">
+                    </div>
+                    <div class="form-group">
+                        <label for="monto_create">Monto</label>
+                        <input required type="number" id="monto_create" class="form-control" asp-for="Monto" name="Monto">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

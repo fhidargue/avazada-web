@@ -11,77 +11,72 @@ using System.Threading.Tasks;
 
 namespace Gimnasio_FND.Controllers
 {
-
-    
-    public class UsuarioController : Controller
+    public class SucursalController : Controller
     {
-
         #region Vistas
-        [Authorize(Roles = "Administrador")]
+        [Authorize]
         public IActionResult Index()
         {
             try
             {
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.GetResponse("api/Usuario");
+                HttpResponseMessage response = serviceObj.GetResponse("api/Sucursal");
 
                 response.EnsureSuccessStatusCode();
 
                 var content = response.Content.ReadAsStringAsync().Result;
-                List<UsuarioViewModel> usuarios = JsonConvert.DeserializeObject<List<UsuarioViewModel>>(content);
-                
+                List<SucursalViewModel> sucursals = JsonConvert.DeserializeObject<List<SucursalViewModel>>(content);
 
-                return View(usuarios);
+                return View(sucursals);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                var s = ex.Message;
                 throw;
             }
+
         }
-
-
         #endregion
 
 
         #region Datos
 
         [HttpPost]
-        public IActionResult GetUsuario(int id)
+        public IActionResult GetSucursal(int id)
         {
             try
             {
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.GetResponse("api/Usuario/" + id);
+                HttpResponseMessage response = serviceObj.GetResponse("api/Sucursal/" + id);
 
                 response.EnsureSuccessStatusCode();
 
                 var content = response.Content.ReadAsStringAsync().Result;
-                UsuarioViewModel usuario = JsonConvert.DeserializeObject<UsuarioViewModel>(content);
+                SucursalViewModel sucursal = JsonConvert.DeserializeObject<SucursalViewModel>(content);
 
-                return Json(usuario);
+                return Json(sucursal);
             }
             catch (Exception ex)
             {
                 var s = ex.Message;
                 return Json(null);
             }
-
         }
 
+
+
         [HttpPost]
-        public IActionResult CreateUsuario(UsuarioViewModel usuario)
+        public IActionResult CreateSucursal(SucursalViewModel sucursal)
         {
             try
             {
-                usuario.Contrasenia = usuario.Contrasenia = "HolaMundo25";
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.PostResponse("api/Usuario", usuario);
+                HttpResponseMessage response = serviceObj.PostResponse("api/Sucursal", sucursal);
                 response.EnsureSuccessStatusCode();
 
-                TempData["datos"] = (response.IsSuccessStatusCode) ? "Usuario Creado" : "Hubo un error creando el usuario";
+                TempData["datos"] = (response.IsSuccessStatusCode) ? "Sucursal Creado" : "Hubo un error creando el sucursal";
 
-                return RedirectToAction("Index", "Usuario");
+                return RedirectToAction("Index", "Sucursal");
             }
             catch (Exception)
             {
@@ -93,18 +88,17 @@ namespace Gimnasio_FND.Controllers
 
 
         [HttpPost]
-        public IActionResult UpdateUsuario(UsuarioViewModel usuario)
+        public IActionResult UpdateSucursal(SucursalViewModel sucursal)
         {
             try
             {
-                usuario.Contrasenia = usuario.Contrasenia = "HolaMundo25";
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.PutResponse("api/Usuario", usuario);
+                HttpResponseMessage response = serviceObj.PutResponse("api/Sucursal", sucursal);
                 response.EnsureSuccessStatusCode();
 
-                TempData["datos"] = (response.IsSuccessStatusCode) ? "Usuario Actualizado" : "Hubo un error actualizando el usuario";
+                TempData["datos"] = (response.IsSuccessStatusCode) ? "Sucursal Actualizado" : "Hubo un error actualizando el sucursal";
 
-                return RedirectToAction("Index", "Usuario");
+                return RedirectToAction("Index", "Sucursal");
             }
             catch (Exception ex)
             {
@@ -114,17 +108,17 @@ namespace Gimnasio_FND.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteUsuario(UsuarioViewModel usuario)
+        public IActionResult DeleteSucursal(SucursalViewModel sucursal)
         {
             try
             {
                 ServiceRepository serviceObj = new ServiceRepository();
-                HttpResponseMessage response = serviceObj.DeleteResponse("api/Usuario/" + usuario.IdUsuario);
+                HttpResponseMessage response = serviceObj.DeleteResponse("api/Sucursal/" + sucursal.IdSucursal);
                 response.EnsureSuccessStatusCode();
 
                 //TempData["datos"] = (response.IsSuccessStatusCode) ? "Usuario Actualizado" : "Hubo un error actualizando el usuario";
 
-                return RedirectToAction("Index", "Usuario");
+                return RedirectToAction("Index", "Sucursal");
             }
             catch (Exception ex)
             {
@@ -133,6 +127,5 @@ namespace Gimnasio_FND.Controllers
             }
         }
         #endregion
-
     }
 }
