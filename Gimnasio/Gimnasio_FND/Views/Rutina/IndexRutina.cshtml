@@ -26,7 +26,6 @@
 
                 <div class="row align-items-center">
 
-                    <p class="m-0 mr-2">Rutina: @item.Descripcion</p>
                     <p class="m-0">Usuario: @item.IdUsuarioClienteNavigation.Nombre</p>
                     @if (User.IsInRole("Entrenador"))
                     {
@@ -47,9 +46,13 @@
 
                 @foreach (var value in item.RutinaXejercicios)
                 {
-                    <p class="card-text">@value.IdEjercicioNavigation.Descripcion @value.IdEjercicioNavigation.Equipo @value.IdEjercicioNavigation.Intensidad</p>
-
+                    <p class="card-text">Ejercicio: @value.IdEjercicioNavigation.Descripcion</p>
+                    <p>Equipo: @value.IdEjercicioNavigation.Equipo </p>
+                    <p>Intensidad: @value.IdEjercicioNavigation.Intensidad</p>
                 }
+
+
+                <small class="m-0 mr-2 font-italic">Descripcion: @item.Descripcion</small>   
 
             </div>
         </div>
