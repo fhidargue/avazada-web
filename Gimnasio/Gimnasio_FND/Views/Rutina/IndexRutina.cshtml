@@ -42,13 +42,16 @@
                 </div>
 
             </div>
-            <div class="card-body">
+            <div class="card-body overflow-auto" style="height:250px;">
 
                 @foreach (var value in item.RutinaXejercicios)
                 {
                     <p class="card-text">Ejercicio: @value.IdEjercicioNavigation.Descripcion</p>
                     <p>Equipo: @value.IdEjercicioNavigation.Equipo </p>
                     <p>Intensidad: @value.IdEjercicioNavigation.Intensidad</p>
+
+                    <div class="dropdown-divider col-12 col-lg-3"></div>
+
                 }
 
 

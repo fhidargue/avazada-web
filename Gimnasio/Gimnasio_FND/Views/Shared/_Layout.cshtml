@@ -50,7 +50,7 @@
             @if (User.Identity.IsAuthenticated)
             {
                 <li class="nav-item">
-                    <a class="btn btn-warning" href="@Url.ActionLink("CerrarSesion", "InicioSesion")">Cerrar Sesión</a>
+                    <a class="btn btn-danger" href="@Url.ActionLink("CerrarSesion", "InicioSesion")">Cerrar Sesión</a>
                 </li>
             }
 
@@ -163,9 +163,9 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex d-flex align-items-center">
                 <div class="image">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    <img style="width:50px; height:50px;" src="https://source.unsplash.com/random" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
                     <a href="#" class="d-block">@User.Identity.Name</a>
