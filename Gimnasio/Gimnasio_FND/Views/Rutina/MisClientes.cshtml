@@ -19,7 +19,7 @@
                     <th>Apellidos</th>
                     <th>Email</th>
                     <th>Teléfono</th>
-                    <th class="text-center">Ver Rutinas</th>
+                    <th class="text-center">Ver Rutinas y Medidas</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,13 +29,14 @@
                     {
                         ids.Add(item.IdUsuarioCliente);
                         <tr>
-                            <th>@item.IdUsuarioClienteNavigation.Cedula</th>
+                            <td>@item.IdUsuarioClienteNavigation.Cedula</td>
                             <td>@item.IdUsuarioClienteNavigation.Nombre</td>
                             <td>@item.IdUsuarioClienteNavigation.Apellidos</td>
                             <td>@item.IdUsuarioClienteNavigation.Email</td>
                             <td>@item.IdUsuarioClienteNavigation.Telefono</td>
                             <td class="text-center">
                                 <a href="@Url.ActionLink("IndexRutina","Rutina", new { id = item.IdUsuarioCliente })" class="btn btn-info"><i class="fas fa-running"></i></a>
+                                <a href="@Url.ActionLink("Index","Medidas", new { id = item.IdUsuarioCliente })" class="btn btn-info"><i class="fas fa-weight"></i></a>
                             </td>
                         </tr>
                     }

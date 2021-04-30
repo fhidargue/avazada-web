@@ -1,0 +1,56 @@
+﻿@model Gimnasio_FND.Models.ViewModel.PerfilViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center my-4">Medidas</h1>
+<br />
+
+<div class="px-4">
+    <div class="card card-info">
+        <div class="card-header">
+            <h3 class="card-title">Medidas del Usuario: @Model.Usuario.Nombre @Model.Usuario.Apellidos</h3>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Peso</label>
+                            <input type="text" class="form-control" asp-for="Medidas.Peso" name="Medidas.Peso">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Porcentaje de Masa</label>
+                            <input type="text" class="form-control" asp-for="Medidas.PorcentajeMasa" name="Medidas.PorcentajeMasa">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Porcentaje de Grasa</label>
+                            <input type="text" class="form-control" asp-for="Medidas.PorcentajeGrasa" name="Medidas.PorcentajeGrasa">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Altura</label>
+                            <input type="email" class="form-control" asp-for="Medidas.Altura" name="Medidas.Altura">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="submit" class="btn btn-warning float-right">Editar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

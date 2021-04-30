@@ -1,0 +1,102 @@
+﻿@model Gimnasio_FND.Models.ViewModel.PerfilViewModel
+
+@{
+    ViewData["Title"] = "PerfilUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center my-4">Mis Datos</h1>
+<br />
+
+<div class="px-4">
+    <div class="card card-info">
+        <div class="card-header">
+            <h3 class="card-title">Información del Usuario</h3>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Cédula</label>
+                            <input type="text" class="form-control" asp-for="Usuario.Cedula" name="Usuario.Cedula">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" asp-for="Usuario.Nombre" name="Usuario.Nombre">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Apellidos</label>
+                            <input type="text" class="form-control" asp-for="Usuario.Apellidos" name="Usuario.Apellidos">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Correo Electrónico</label>
+                            <input type="email" class="form-control" asp-for="Usuario.Email" name="Usuario.Email">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Teléfono</label>
+                            <input type="text" class="form-control" asp-for="Usuario.Telefono" name="Usuario.Telefono">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <br />
+    @if (User.IsInRole("Cliente"))
+    {
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Medidas del Usuario</h3>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Peso</label>
+                                <input type="text" class="form-control" asp-for="Medidas.Peso" name="Medidas.Peso" disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Porcentaje de Masa</label>
+                                <input type="text" class="form-control" asp-for="Medidas.PorcentajeMasa" name="Medidas.PorcentajeMasa" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Porcentaje de Grasa</label>
+                                <input type="text" class="form-control" asp-for="Medidas.PorcentajeGrasa" name="Medidas.PorcentajeGrasa" disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Altura</label>
+                                <input type="email" class="form-control" asp-for="Medidas.Altura" name="Medidas.Altura" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+</div>
