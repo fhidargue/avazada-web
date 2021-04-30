@@ -5,11 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (User.IsInRole("Entrenador"))
+{
 
-<partial name="_AddEjercicioPartial" model="new Gimnasio_FND.Models.ViewModel.RutinaXejercicio { IdRutina = Model.IdRutina, Ejercicios = Model.Ejercicios}" />
+    <partial name="_AddEjercicioPartial" model="new Gimnasio_FND.Models.ViewModel.RutinaXejercicio { IdRutina = Model.IdRutina, Ejercicios = Model.Ejercicios }" />
 
-<partial name="_EditRutinaEjercicioPartial" model="new Gimnasio_FND.Models.ViewModel.RutinaXejercicio { IdRutina = Model.IdRutina}" />
-
+    <partial name="_EditRutinaEjercicioPartial" model="new Gimnasio_FND.Models.ViewModel.RutinaXejercicio { IdRutina = Model.IdRutina }" />
+}
 
 <div class="p-3">
     <div class="card">
@@ -18,16 +20,17 @@
                 @Html.HiddenFor(r => r.IdRutina, new { id = "RutinaEdit" })
                 @Html.HiddenFor(r => r.IdUsuarioEntrenador)
                 @Html.HiddenFor(r => r.IdUsuarioCliente)
-                <div class="d-flex flex-row flex-wrap justify-content-md-start">
+                <div class="d-flex flex-row flex-wrap justify-content-md-start h-25">
+                    <div class="mt-2 mr-5 col-3">
+                        <textarea style="max-height:100px;"  type="text" asp-for="Descripcion" name="Descripcion" class="form-control"></textarea>
+                    </div>
                     <div class="mt-2 mr-5 w-auto">
                         <input type="date" asp-for="FechaAsignacion" class="form-control" readonly />
                     </div>
                     <div class="mt-2 mr-5 w-auto">
                         <input type="text" value="@Model.IdUsuarioClienteNavigation.Nombre @Model.IdUsuarioClienteNavigation.Apellidos" class="form-control" readonly />
                     </div>
-                    <div class="mt-2 mr-5 w-auto ">
-                        <input type="text" asp-for="Descripcion" name="Descripcion" class="form-control" />
-                    </div>
+
                     <div class="mt-2  mr-5 w-auto">
                         <input type="submit" value="Editar Rutina" class="btn btn-outline-success">
                     </div>
@@ -36,12 +39,16 @@
             </form>
         </div>
     </div>
+
     <div class="card-body">
-        <div class="row">
-            <div class="col-2">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ejercicio_create">Agregar Ejercicio</button>
+        @if (User.IsInRole("Entrenador"))
+        {
+            <div class="row">
+                <div class="col-2">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ejercicio_create">Agregar Ejercicio</button>
+                </div>
             </div>
-        </div>
+        }
         <hr />
         <table class="table table-hover">
             <thead>
@@ -51,7 +58,10 @@
                     <th scope="col">Equipo</th>
                     <th scope="col">Repeticiones</th>
                     <th scope="col">Series</th>
-                    <th scope="col">Acciones</th>
+                    @if (User.IsInRole("Entrenador"))
+                    {
+                        <th scope="col">Acciones</th>
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -64,10 +74,13 @@
                         <td>@item.IdEjercicioNavigation.Equipo</td>
                         <td>@item.Repeticiones</td>
                         <td>@item.Series</td>
-                        <td class="d-flex ">
-                            <button id="@item.IdRutinaEjercicio" data-toggle="modal" data-target="#modal_update_ejercicio" class="btn btn-info mr-1 edit"><i class="far fa-edit"></i></button>
-                            <a href="@Url.ActionLink("DeleteRutinaEjercicio", "Rutina", new { idRutina = Model.IdRutina, idRutinaEjercicio =  item.IdRutinaEjercicio}) " class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                        </td>
+                        @if (User.IsInRole("Entrenador"))
+                        {
+                            <td class="d-flex ">
+                                <button id="@item.IdRutinaEjercicio" data-toggle="modal" data-target="#modal_update_ejercicio" class="btn btn-info mr-1 edit"><i class="far fa-edit"></i></button>
+                                <a href="@Url.ActionLink("DeleteRutinaEjercicio", "Rutina", new { idRutina = Model.IdRutina, idRutinaEjercicio = item.IdRutinaEjercicio }) " class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        }
                     </tr>
                 }
             </tbody>
