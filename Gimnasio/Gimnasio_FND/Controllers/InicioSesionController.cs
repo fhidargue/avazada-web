@@ -44,19 +44,11 @@ namespace Gimnasio_FND.Controllers
                     identity.AddClaim(new Claim(ClaimTypes.Name, usuario.Nombre + " " + usuario.Apellidos));
                     identity.AddClaim(new Claim(ClaimTypes.Role, usuario.IdRolNavigation.Nombre));
 
-                    //foreach (var item in User.Claims)
-                    //{
-                    //    if (item.Type.Equals("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"))
-                    //    {
-                    //       int userId = Convert.ToInt32(item.Value);
-                    //    }                  
-                    //}
-
                     var principal = new ClaimsPrincipal(identity);
 
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-                    return RedirectToAction("Index", "Usuario");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

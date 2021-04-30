@@ -12,7 +12,7 @@
 
 <div class="p-3">
 
-    @if (Model.ToList().Count > 0)
+    @if (Model.ToList().Count > 0 && User.IsInRole("Entrenador"))
     {
         <button type="button" class="btn btn-success mb-4" data-toggle="modal" data-target="#rutina_create">
             Crear Rutina
@@ -26,27 +26,36 @@
 
                 <div class="row align-items-center">
 
-                    <p class="m-0 mr-2">Rutina: @item.Descripcion</p>
                     <p class="m-0">Usuario: @item.IdUsuarioClienteNavigation.Nombre</p>
+                    @if (User.IsInRole("Entrenador"))
+                    {
+                        <div class="ml-4">
 
-                    <div class="ml-4">
+                            <a href="@Url.ActionLink("EditRutina","Rutina",new { id = item.IdRutina})" class="btn btn-outline-success">
+                                Editar Rutina
+                            </a>
 
-                        <a href="@Url.ActionLink("EditRutina","Rutina",new { id = item.IdRutina})" class="btn btn-outline-success">
-                            Editar Rutina
-                        </a>
+                        </div>
+                    }
 
-                    </div>
 
                 </div>
 
             </div>
-            <div class="card-body">
+            <div class="card-body overflow-auto" style="height:250px;">
 
                 @foreach (var value in item.RutinaXejercicios)
                 {
-                    <p class="card-text">@value.IdEjercicioNavigation.Descripcion @value.IdEjercicioNavigation.Equipo @value.IdEjercicioNavigation.Intensidad</p>
+                    <p class="card-text">Ejercicio: @value.IdEjercicioNavigation.Descripcion</p>
+                    <p>Equipo: @value.IdEjercicioNavigation.Equipo </p>
+                    <p>Intensidad: @value.IdEjercicioNavigation.Intensidad</p>
+
+                    <div class="dropdown-divider col-12 col-lg-3"></div>
 
                 }
+
+
+                <small class="m-0 mr-2 font-italic">Descripcion: @item.Descripcion</small>   
 
             </div>
         </div>

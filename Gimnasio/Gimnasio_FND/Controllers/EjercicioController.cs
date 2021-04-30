@@ -96,7 +96,7 @@ namespace Gimnasio_FND.Controllers
                 HttpResponseMessage response = serviceObj.PutResponse("api/Ejercicio", ejercicio);
                 response.EnsureSuccessStatusCode();
 
-                TempData["datos"] = (response.IsSuccessStatusCode) ? "Ejercicio Actualizado" : "Hubo un error actualizando el ejercicio";
+                ViewBag.Datos = (response.IsSuccessStatusCode) ? "Ejercicio Actualizado" : "Hubo un error actualizando el ejercicio";
 
                 return RedirectToAction("Index", "Ejercicio");
             }
