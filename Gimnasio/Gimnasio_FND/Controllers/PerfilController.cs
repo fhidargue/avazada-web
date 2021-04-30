@@ -41,5 +41,23 @@ namespace Gimnasio_FND.Controllers
             }
         }
 
+        [HttpPost]
+        public IActionResult UpdatePerfil(UsuarioViewModel usuario)
+        {
+            try
+            {
+                ServiceRepository serviceObj = new ServiceRepository();
+                HttpResponseMessage response = serviceObj.PutResponse("api/Usuario", usuario);
+                response.EnsureSuccessStatusCode();
+
+                return RedirectToAction("PerfilUsuario", "Perfil");
+            }
+            catch (Exception ex)
+            {
+                var s = ex.Message;
+                throw;
+            }
+        }
+
     }
 }
